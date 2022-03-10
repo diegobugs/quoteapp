@@ -14,6 +14,10 @@ interface QuoteScreenProps {
 const QuoteScreen = ({ navigation }: QuoteScreenProps) => {
   const theme = useTheme() as ThemeType;
 
+  const goToProfile = () => {
+    navigation.navigate("Profile");
+  };
+
   return (
     <SafeAreaView style={styles.container(theme)}>
       <View style={styles.header}>
@@ -47,7 +51,11 @@ const QuoteScreen = ({ navigation }: QuoteScreenProps) => {
         </Text>
       </View>
       <View style={styles.bottomContainer}>
-        <Button style={styles.button(theme)} disableShadow>
+        <Button
+          onPress={goToProfile}
+          style={styles.button(theme)}
+          disableShadow
+        >
           <Icon icon="user" fill="primaryContrast" width={24} height={24} />
         </Button>
       </View>

@@ -4,3 +4,5 @@ export { default as Text } from "./Text";
 export type { FontWeight, TextProps } from "./Text";
 export { default as Icon } from "./Icon";
 export type { IconProps } from "./Icon";
+export { default as ListItem } from "./ListItem";
+export type { ListItemProps } from "./ListItem";
