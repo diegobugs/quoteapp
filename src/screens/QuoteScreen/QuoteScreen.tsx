@@ -28,9 +28,19 @@ const QuoteScreen = ({ navigation }: QuoteScreenProps) => {
           width={100}
           height={100}
         />
-        <Button style={styles.button(theme)} disableShadow>
-          <Icon icon="share" fill="primaryContrast" width={24} height={24} />
-        </Button>
+        <View style={styles.quoteButtons}>
+          <Button style={styles.button(theme)} disableShadow>
+            <Icon
+              icon="starOff"
+              fill="primaryContrast"
+              width={24}
+              height={24}
+            />
+          </Button>
+          <Button style={styles.button(theme)} disableShadow>
+            <Icon icon="share" fill="primaryContrast" width={24} height={24} />
+          </Button>
+        </View>
       </View>
       <View style={styles.quoteContainer}>
         <Text

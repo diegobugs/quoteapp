@@ -7,6 +7,7 @@ interface Styles {
   container: (theme: ThemeType) => ViewStyle;
   header: ViewStyle;
   quoteAuthorText: TextStyle;
+  quoteButtons: ViewStyle;
   quoteText: TextStyle;
   quoteContainer: ViewStyle;
   [key: string]: any;
@@ -17,12 +18,11 @@ export const styles = StyleSheet.create<Styles>({
     alignItems: "flex-end",
   },
   button: (theme) => ({
-    backgroundColor: theme.colors.background,
+    backgroundColor: theme.colors.primary,
   }),
   container: (theme) => ({
-    backgroundColor: theme.colors.background,
+    backgroundColor: theme.colors.primary,
     flex: 1,
-    marginBottom: 10,
     paddingHorizontal: 24,
   }),
   header: {
@@ -33,6 +33,9 @@ export const styles = StyleSheet.create<Styles>({
   quoteAuthorText: {
     marginTop: 10,
     fontSize: 16,
+  },
+  quoteButtons: {
+    flexDirection: "row",
   },
   quoteText: {
     fontSize: 36,
