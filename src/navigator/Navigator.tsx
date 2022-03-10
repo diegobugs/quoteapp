@@ -1,10 +1,11 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import { QuoteScreen } from "@screens";
+import { ProfileScreen, QuoteScreen } from "@screens";
 
 export type MainStackParamList = {
   Quote: undefined;
+  Profile: undefined;
   Splashscreen: undefined;
 };
 
@@ -12,8 +13,13 @@ const Stack = createNativeStackNavigator<MainStackParamList>();
 
 const MainNavigator = () => {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Quote" component={QuoteScreen} />
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Quote"
+        component={QuoteScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen name="Profile" component={ProfileScreen} />
     </Stack.Navigator>
   );
 };
