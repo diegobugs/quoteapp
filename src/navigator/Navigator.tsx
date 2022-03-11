@@ -6,6 +6,7 @@ import {
   ProfileScreen,
   QuoteScreen,
   ReminderScreen,
+  SettingScreen,
   SplashScreen,
 } from "@screens";
 import { useSelector } from "react-redux";
@@ -18,6 +19,7 @@ export type MainStackParamList = {
   Splash: undefined;
   Language: undefined;
   Reminder: undefined;
+  Setting: undefined;
 };
 
 const Stack = createNativeStackNavigator<MainStackParamList>();
@@ -53,6 +55,11 @@ const MainNavigator = () => {
         component={ProfileScreen}
       />
       <Stack.Screen name="Reminder" component={ReminderScreen} />
+      <Stack.Screen
+        name="Setting"
+        options={{ title: strings.General }}
+        component={SettingScreen}
+      />
     </Stack.Navigator>
   );
 };

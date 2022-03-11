@@ -3,6 +3,7 @@ import BellIcon from "./BellIcon";
 import BrazilIcon from "./BrazilIcon";
 import CheckIcon from "./CheckIcon";
 import ClockIcon from "./ClockIcon";
+import DarkModeIcon from "./DarkModeIcon";
 import GearIcon from "./GearIcon";
 import LanguageIcon from "./LanguageIcon";
 import QuoteLeftIcon from "./QuoteLeftIcon";
@@ -19,6 +20,7 @@ export type IconsList =
   | "brazil"
   | "check"
   | "clock"
+  | "darkMode"
   | "gear"
   | "language"
   | "quoteLeft"
@@ -35,6 +37,7 @@ export default {
   brazil: BrazilIcon,
   check: CheckIcon,
   clock: ClockIcon,
+  darkMode: DarkModeIcon,
   gear: GearIcon,
   language: LanguageIcon,
   quoteLeft: QuoteLeftIcon,
