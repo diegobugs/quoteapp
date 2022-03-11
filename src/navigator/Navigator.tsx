@@ -28,6 +28,7 @@ const Stack = createNativeStackNavigator<MainStackParamList>();
 
 const MainNavigator = () => {
   const settings = useSelector((state: RootStoreType) => state.settings);
+  strings.setLanguage(settings.language || "ES");
 
   return (
     <Stack.Navigator>
