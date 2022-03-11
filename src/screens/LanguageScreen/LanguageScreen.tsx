@@ -1,11 +1,12 @@
 import { Icon, ListItem, Text } from "@atoms";
 import { MainStackParamList } from "@navigator";
 import { NavigationProp, useTheme } from "@react-navigation/native";
+import { useHeaderHeight } from "@react-navigation/elements";
 import { RootStoreType, settingsActions } from "@store";
 import { LanguageType, strings, ThemeType } from "@utils";
 import React, { useEffect, useState } from "react";
-import { Pressable, ScrollView, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { Pressable, ScrollView } from "react-native";
+import { Edge, SafeAreaView } from "react-native-safe-area-context";
 import { useDispatch, useSelector } from "react-redux";
 import { styles } from "./styles";
 
@@ -15,6 +16,7 @@ interface LanguageScreenProps {
 
 const LanguageScreen = ({ navigation }: LanguageScreenProps) => {
   const theme = useTheme() as ThemeType;
+  const headerHeight = useHeaderHeight();
   const appConfigured = useSelector(
     (state: RootStoreType) => state.settings.appConfigured
   );
@@ -35,8 +37,12 @@ const LanguageScreen = ({ navigation }: LanguageScreenProps) => {
     }
   };
 
+  const edges: Edge[] = ["bottom", "left", "right", "top"];
+  const validEdges: Edge[] =
+    headerHeight > 0 ? edges.filter((e) => e !== "top") : edges;
+
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container} edges={validEdges}>
       <Icon icon="language" fill="primary" width={100} height={100} />
       <Text style={styles.title}>{strings.SetYourLanguage}</Text>
       <ScrollView>
@@ -66,14 +72,14 @@ const LanguageScreen = ({ navigation }: LanguageScreenProps) => {
           <ListItem
             style={styles.optionText}
             startIcon="brazil"
-            primaryText="Portugues"
+            primaryText="Português"
             onActionPress={() => selectLanguage("PT")}
             actionIcon="check"
             {...(selectedLang !== "PT" && { disableActionIcon: true })}
           />
         </Pressable>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 };
 

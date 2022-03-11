@@ -7,6 +7,7 @@ export let strings = new LocalizedStrings({
     // Navigation
     TitleLanguage: "Language",
     TitleProfile: "Profile",
+    TitleReminder: "Reminder",
 
     // Profile
     Settings: "Settings",
@@ -30,6 +31,7 @@ export let strings = new LocalizedStrings({
     // Navigation
     TitleLanguage: "Idioma",
     TitleProfile: "Perfil",
+    TitleReminder: "Recordatorio",
 
     // Profile
     Settings: "Ajustes",
@@ -53,6 +55,7 @@ export let strings = new LocalizedStrings({
     // Navigation
     TitleLanguage: "Idioma",
     TitleProfile: "Perfil",
+    TitleReminder: "Lembretes",
 
     // Profile
     Settings: "Configurações",
