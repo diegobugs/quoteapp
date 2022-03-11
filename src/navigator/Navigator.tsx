@@ -55,7 +55,11 @@ const MainNavigator = () => {
         options={{ headerTitle: strings.TitleProfile, headerBackTitle: "" }}
         component={ProfileScreen}
       />
-      <Stack.Screen name="Reminder" component={ReminderScreen} />
+      <Stack.Screen
+        name="Reminder"
+        options={{ headerTitle: strings.TitleReminder }}
+        component={ReminderScreen}
+      />
       <Stack.Screen
         name="Setting"
         options={{ headerTitle: strings.General }}
