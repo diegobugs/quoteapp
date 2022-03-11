@@ -3,7 +3,7 @@ import { MainStackParamList } from "@navigator";
 import { NavigationProp, useTheme } from "@react-navigation/native";
 import { strings, ThemeType } from "@utils";
 import React from "react";
-import { ScrollView, View } from "react-native";
+import { Pressable, ScrollView, View } from "react-native";
 import { styles } from "./styles";
 
 interface QuoteScreenProps {
@@ -13,14 +13,18 @@ interface QuoteScreenProps {
 const QuoteScreen = ({ navigation }: QuoteScreenProps) => {
   const theme = useTheme() as ThemeType;
 
+  const goToSetting = () => navigation.navigate("Setting");
+
   return (
     <ScrollView style={styles.container(theme)}>
       <Text style={styles.titleText}>{strings.Settings}</Text>
-      <ListItem
-        startIcon="gear"
-        style={styles.item}
-        primaryText={strings.General}
-      />
+      <Pressable onPress={goToSetting}>
+        <ListItem
+          startIcon="gear"
+          style={styles.item}
+          primaryText={strings.General}
+        />
+      </Pressable>
       <ListItem
         startIcon="bell"
         style={styles.item}
