@@ -11,7 +11,9 @@ import {
 } from "@screens";
 import { useSelector } from "react-redux";
 import { RootStoreType } from "@store";
-import { strings } from "@utils";
+import { DarkTheme, strings, Theme } from "@utils";
+import { NavigationContainer } from "@react-navigation/native";
+import { useColorScheme } from "react-native";
 
 export type MainStackParamList = {
   Quote: undefined;
@@ -25,9 +27,7 @@ export type MainStackParamList = {
 const Stack = createNativeStackNavigator<MainStackParamList>();
 
 const MainNavigator = () => {
-  const appConfigured = useSelector(
-    (state: RootStoreType) => state.settings.appConfigured
-  );
+  const settings = useSelector((state: RootStoreType) => state.settings);
 
   return (
     <Stack.Navigator>
@@ -39,8 +39,8 @@ const MainNavigator = () => {
       <Stack.Screen
         name="Language"
         options={{
-          headerShown: appConfigured ? true : false,
-          title: strings.TitleLanguage,
+          headerShown: settings.appConfigured ? true : false,
+          headerTitle: strings.TitleLanguage,
         }}
         component={LanguageScreen}
       />
@@ -51,17 +51,27 @@ const MainNavigator = () => {
       />
       <Stack.Screen
         name="Profile"
-        options={{ title: strings.TitleProfile }}
+        options={{ headerTitle: strings.TitleProfile, headerBackTitle: "" }}
         component={ProfileScreen}
       />
       <Stack.Screen name="Reminder" component={ReminderScreen} />
       <Stack.Screen
         name="Setting"
-        options={{ title: strings.General }}
+        options={{ headerTitle: strings.General }}
         component={SettingScreen}
       />
     </Stack.Navigator>
   );
 };
 
-export default MainNavigator;
+const Navigator = () => {
+  const isDarkMode = useColorScheme() === "dark";
+
+  return (
+    <NavigationContainer theme={isDarkMode ? DarkTheme : Theme}>
+      <MainNavigator />
+    </NavigationContainer>
+  );
+};
+
+export default Navigator;
