@@ -4,7 +4,7 @@ import { NavigationProp, useTheme } from "@react-navigation/native";
 import { RootStoreType, settingsActions } from "@store";
 import { LanguageType, strings, ThemeType } from "@utils";
 import React, { useEffect, useState } from "react";
-import { Pressable, ScrollView } from "react-native";
+import { Pressable, ScrollView, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useDispatch, useSelector } from "react-redux";
 import { styles } from "./styles";
@@ -25,20 +25,18 @@ const LanguageScreen = ({ navigation }: LanguageScreenProps) => {
 
   const selectLanguage = (lang: LanguageType) => {
     setSelectedLang(lang);
+    dispatch(settingsActions.setSettings({ language: lang }));
+    strings.setLanguage(lang);
+    if (appConfigured) {
+      navigation.reset({ index: 0, routes: [{ name: "Splash" }] });
+    } else {
+      dispatch(settingsActions.setSettings({ appConfigured: true }));
+      navigation.reset({ index: 0, routes: [{ name: "Reminder" }] });
+    }
   };
 
-  useEffect(() => {
-    if (selectedLang) {
-      dispatch(settingsActions.setSettings({ language: selectedLang }));
-      if (!appConfigured) {
-        dispatch(settingsActions.setSettings({ appConfigured: true }));
-        navigation.reset({ index: 0, routes: [{ name: "Reminder" }] });
-      }
-    }
-  }, [selectedLang]);
-
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <Icon icon="language" fill="primary" width={100} height={100} />
       <Text style={styles.title}>{strings.SetYourLanguage}</Text>
       <ScrollView>
@@ -75,7 +73,7 @@ const LanguageScreen = ({ navigation }: LanguageScreenProps) => {
           />
         </Pressable>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 };
 
