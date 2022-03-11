@@ -16,6 +16,7 @@
     "babel-plugin-module-resolver": "4.1.0",
     "react": "17.0.2",
     "react-native": "0.67.2",
+    "react-native-localization": "^2.3.1",
     "react-native-mmkv": "2.1.2",
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "3.10.1",

@@ -1,0 +1,40 @@
+import LocalizedStrings from "react-native-localization";
+
+export let strings = new LocalizedStrings({
+  EN: {
+    SampleQuote: "Its just me",
+    SetYourLanguage: "Choose your language",
+    TitleLanguage: "Language",
+    TitleProfile: "Profile",
+    Settings: "Settings",
+    General: "General",
+    Reminders: "Reminders",
+    YourQuotes: "Your quotes",
+    History: "History",
+    Favorite: "Favorites",
+  },
+  ES: {
+    SampleQuote: "Solamente soy yo",
+    SetYourLanguage: "Selecciona tu idioma",
+    TitleLanguage: "Idioma",
+    TitleProfile: "Perfil",
+    Settings: "Ajustes",
+    General: "General",
+    Reminders: "Recordatorios",
+    YourQuotes: "Tus frases",
+    History: "Historial",
+    Favorite: "Favoritos",
+  },
+  PT: {
+    SampleQuote: "So sou eu",
+    SetYourLanguage: "Escolla seu idioma",
+    TitleLanguage: "Idioma",
+    TitleProfile: "Perfil",
+    Settings: "Configurações",
+    General: "General",
+    Reminders: "Lembretes",
+    YourQuotes: "Suas cotações",
+    History: "História",
+    Favorite: "Favoritos",
+  },
+});
