@@ -1,10 +1,9 @@
-import { Button, Icon, ListItem, Text } from "@atoms";
+import { ListItem, Text } from "@atoms";
 import { MainStackParamList } from "@navigator";
 import { NavigationProp, useTheme } from "@react-navigation/native";
-import { ThemeType } from "@utils";
+import { strings, ThemeType } from "@utils";
 import React from "react";
 import { ScrollView, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "./styles";
 
 interface QuoteScreenProps {
@@ -16,23 +15,27 @@ const QuoteScreen = ({ navigation }: QuoteScreenProps) => {
 
   return (
     <ScrollView style={styles.container(theme)}>
-      <Text style={styles.titleText}>Ajustes</Text>
-      <ListItem startIcon="gear" style={styles.item} primaryText={"General"} />
+      <Text style={styles.titleText}>{strings.Settings}</Text>
+      <ListItem
+        startIcon="gear"
+        style={styles.item}
+        primaryText={strings.General}
+      />
       <ListItem
         startIcon="bell"
         style={styles.item}
-        primaryText={"Recordatorios"}
+        primaryText={strings.Reminders}
       />
-      <Text style={styles.titleText}>Tus frases</Text>
+      <Text style={styles.titleText}>{strings.YourQuotes}</Text>
       <ListItem
         startIcon="clock"
         style={styles.item}
-        primaryText={"Historial"}
+        primaryText={strings.History}
       />
       <ListItem
         startIcon="starOn"
         style={styles.item}
-        primaryText={"Favoritos"}
+        primaryText={strings.Favorite}
       />
     </ScrollView>
   );

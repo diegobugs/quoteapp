@@ -1,7 +1,7 @@
 import { Button, Icon, Text } from "@atoms";
 import { MainStackParamList } from "@navigator";
 import { NavigationProp, useTheme } from "@react-navigation/native";
-import { ThemeType } from "@utils";
+import { strings, ThemeType } from "@utils";
 import React from "react";
 import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -49,7 +49,7 @@ const QuoteScreen = ({ navigation }: QuoteScreenProps) => {
           color="primaryContrast"
           style={styles.quoteText}
         >
-          Its just me
+          {strings.SampleQuote}
         </Text>
         <Text
           allowFontScaling

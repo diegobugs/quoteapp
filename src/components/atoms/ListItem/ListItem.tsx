@@ -88,7 +88,6 @@ export type ListItemProps = ViewProps & {
   divider?: boolean;
   DividerProps?: Partial<ViewProps>;
   onActionPress?: () => void;
-  onMenuIconPress?: () => void;
   primaryText?: string | React.ReactNode;
   PrimaryTextProps?: Partial<TextProps>;
   shadowStyle?: StyleProp<ViewStyle>;
@@ -149,7 +148,6 @@ const ListItem = ({
             icon={startIcon}
             {...iconDefaultProps}
             style={styles.startIcon}
-            fill={"text"}
           />
         )}
         <View style={[styles.textContainer]}>

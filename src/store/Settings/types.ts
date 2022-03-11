@@ -1,4 +1,7 @@
+import { LanguageType } from "@utils";
+
 // Tipo del estado
 export type SettingsReducer = {
-  firstAppRun: Boolean;
+  appConfigured?: Boolean;
+  language?: LanguageType;
 };

@@ -3,7 +3,8 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { SettingsReducer } from "./types";
 
 const initialState: SettingsReducer = {
-  firstAppRun: false,
+  appConfigured: false,
+  language: undefined,
 };
 
 const settingsSlice = createSlice({
