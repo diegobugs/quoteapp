@@ -4,6 +4,7 @@ import { SettingsReducer } from "./types";
 
 const initialState: SettingsReducer = {
   appConfigured: false,
+  darkMode: undefined,
   language: undefined,
 };
 
