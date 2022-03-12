@@ -24,6 +24,10 @@ export let strings = new LocalizedStrings({
     Other: "Other",
     PrivacyPolicy: "Privacy Policy",
     TermsAndConditions: "Terms and Conditions",
+
+    // DarkMode
+    LightMode: "Light mode",
+    DefaultMode: "System default",
   },
   ES: {
     SampleQuote: "Solamente soy yo",
@@ -48,6 +52,10 @@ export let strings = new LocalizedStrings({
     Other: "Otros",
     PrivacyPolicy: "Política de privacidad",
     TermsAndConditions: "Términos y condiciones",
+
+    // DarkMode
+    LightMode: "Modo claro",
+    DefaultMode: "Por defecto del sistema",
   },
   PT: {
     SampleQuote: "So sou eu",
@@ -72,5 +80,9 @@ export let strings = new LocalizedStrings({
     Other: "Outras",
     PrivacyPolicy: "Política de Privacidade",
     TermsAndConditions: "Termos e Condições",
+
+    // DarkMode
+    LightMode: "Modo claro",
+    DefaultMode: "Padrão do sistema",
   },
 });

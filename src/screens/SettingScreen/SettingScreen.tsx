@@ -17,6 +17,10 @@ const SettingScreen = ({ navigation }: SettingScreenProps) => {
     navigation.navigate("Language");
   };
 
+  const goToDarkMode = () => {
+    navigation.navigate("DarkMode");
+  };
+
   return (
     <ScrollView style={styles.container(theme)}>
       <Text style={styles.titleText}>{strings.Customize}</Text>
@@ -27,11 +31,13 @@ const SettingScreen = ({ navigation }: SettingScreenProps) => {
           primaryText={strings.Language}
         />
       </Pressable>
-      <ListItem
-        startIcon="darkMode"
-        style={styles.item}
-        primaryText={strings.DarkMode}
-      />
+      <Pressable onPress={goToDarkMode}>
+        <ListItem
+          startIcon="darkMode"
+          style={styles.item}
+          primaryText={strings.DarkMode}
+        />
+      </Pressable>
       <Text style={styles.titleText}>{strings.Other}</Text>
       <ListItem
         disableActionIcon

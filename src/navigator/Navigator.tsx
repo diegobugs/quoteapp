@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import {
+  DarkModeScreen,
   LanguageScreen,
   ProfileScreen,
   QuoteScreen,
@@ -16,12 +17,13 @@ import { NavigationContainer } from "@react-navigation/native";
 import { useColorScheme } from "react-native";
 
 export type MainStackParamList = {
-  Quote: undefined;
-  Profile: undefined;
-  Splash: undefined;
+  DarkMode: undefined;
   Language: undefined;
+  Profile: undefined;
+  Quote: undefined;
   Reminder: undefined;
   Setting: undefined;
+  Splash: undefined;
 };
 
 const Stack = createNativeStackNavigator<MainStackParamList>();
@@ -65,15 +67,29 @@ const MainNavigator = () => {
         options={{ headerTitle: strings.General }}
         component={SettingScreen}
       />
+      <Stack.Screen
+        name="DarkMode"
+        options={{ headerTitle: strings.DarkMode }}
+        component={DarkModeScreen}
+      />
     </Stack.Navigator>
   );
 };
 
 const Navigator = () => {
-  const isDarkMode = useColorScheme() === "dark";
+  const isNativeDarkMode = useColorScheme() === "dark";
+  const settings = useSelector((state: RootStoreType) => state.settings);
+  const [darkMode, setDarkMode] = useState(settings.darkMode);
 
+  useEffect(() => {
+    if (typeof settings.darkMode === "undefined") {
+      setDarkMode(isNativeDarkMode);
+    } else {
+      setDarkMode(settings.darkMode);
+    }
+  }, [isNativeDarkMode, settings.darkMode]);
   return (
-    <NavigationContainer theme={isDarkMode ? DarkTheme : Theme}>
+    <NavigationContainer theme={darkMode ? DarkTheme : Theme}>
       <MainNavigator />
     </NavigationContainer>
   );
