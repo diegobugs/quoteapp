@@ -34,26 +34,15 @@ export const styles: Styles = StyleSheet.create<Styles>({
   pressable_contained_pressed: (theme: ThemeType) => ({
     opacity: 0.5,
   }),
-  pressable_text: (theme: ThemeType) => ({
-    borderWidth: 1,
-    backgroundColor: theme.colors.primaryContrast,
-    borderColor: theme.colors.primary + theme.colors.opacity[20],
-  }),
+  pressable_text: (theme: ThemeType) => ({}),
   pressable_text_shadow: (theme: ThemeType) => ({
     shadowColor: theme.colors.primary,
   }),
-  pressable_text_disabled: (theme: ThemeType) => ({
-    borderWidth: 1,
-    backgroundColor: theme.colors.background,
-    borderColor: theme.colors.disabled,
-  }),
+  pressable_text_disabled: (theme: ThemeType) => ({}),
   pressable_text_disabled_shadow: (theme: ThemeType) => ({
     shadowColor: theme.colors.disabled,
   }),
   pressable_text_pressed: (theme: ThemeType) => ({
-    borderWidth: 1,
-    backgroundColor: theme.colors.primaryContrast,
-    borderColor: theme.colors.primary + theme.colors.opacity[20],
     opacity: 0.5,
   }),
 

@@ -15,6 +15,8 @@ const QuoteScreen = ({ navigation }: QuoteScreenProps) => {
 
   const goToSetting = () => navigation.navigate("Setting");
 
+  const goToReminder = () => navigation.navigate("Reminder");
+
   return (
     <ScrollView style={styles.container(theme)}>
       <Text style={styles.titleText}>{strings.Settings}</Text>
@@ -25,11 +27,13 @@ const QuoteScreen = ({ navigation }: QuoteScreenProps) => {
           primaryText={strings.General}
         />
       </Pressable>
-      <ListItem
-        startIcon="bell"
-        style={styles.item}
-        primaryText={strings.Reminders}
-      />
+      <Pressable onPress={goToReminder}>
+        <ListItem
+          startIcon="bell"
+          style={styles.item}
+          primaryText={strings.Reminders}
+        />
+      </Pressable>
       <Text style={styles.titleText}>{strings.YourQuotes}</Text>
       <ListItem
         startIcon="clock"
