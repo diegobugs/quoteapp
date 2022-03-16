@@ -3,14 +3,7 @@ import { MainStackParamList } from "@navigator";
 import { RouteProp, useTheme } from "@react-navigation/native";
 import { DayStringType, ReminderType, strings, ThemeType } from "@utils";
 import React, { useCallback, useState } from "react";
-import {
-  Alert,
-  Platform,
-  Pressable,
-  ToastAndroid,
-  useColorScheme,
-  View,
-} from "react-native";
+import { Alert, Platform, Pressable, ToastAndroid, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "./styles";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -20,6 +13,7 @@ import DateTimePicker, {
 import { useDispatch } from "react-redux";
 import { remindersActions } from "@store";
 import uuid from "react-native-uuid";
+import { useCheckDarkMode } from "@hooks";
 
 interface AddReminderScreenProps {
   navigation: NativeStackNavigationProp<MainStackParamList, "Quote">;
@@ -35,7 +29,7 @@ const AddReminderScreen = ({ navigation, route }: AddReminderScreenProps) => {
     paramReminder?.days ?? []
   );
   const dispatch = useDispatch();
-  const isDarkMode = useColorScheme();
+  const isDarkMode = useCheckDarkMode();
 
   const isActiveDay = useCallback(
     (thisDay: DayStringType, days: Array<DayStringType>) => {
