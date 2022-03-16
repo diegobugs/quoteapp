@@ -43,7 +43,7 @@ const Button = ({
           }`
         ](theme),
     fullWidth ? styles.fullWidth : null,
-    ..._shadowStyle,
+    { ...(!disableShadow && _shadowStyle) },
     style,
   ];
   const isTouched = useRef(false);

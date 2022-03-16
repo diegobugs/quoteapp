@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import {
+  AddReminderScreen,
   DarkModeScreen,
   LanguageScreen,
   ProfileScreen,
@@ -12,11 +13,16 @@ import {
 } from "@screens";
 import { useSelector } from "react-redux";
 import { RootStoreType } from "@store";
-import { DarkTheme, strings, Theme } from "@utils";
+import { DarkTheme, ReminderType, strings, Theme } from "@utils";
 import { NavigationContainer } from "@react-navigation/native";
-import { useColorScheme } from "react-native";
+import { useCheckDarkMode } from "@hooks";
 
 export type MainStackParamList = {
+  AddReminder:
+    | {
+        reminder: ReminderType;
+      }
+    | undefined;
   DarkMode: undefined;
   Language: undefined;
   Profile: undefined;
@@ -63,6 +69,11 @@ const MainNavigator = () => {
         component={ReminderScreen}
       />
       <Stack.Screen
+        name="AddReminder"
+        options={{ headerTitle: strings.TitleAddReminder, headerBackTitle: "" }}
+        component={AddReminderScreen}
+      />
+      <Stack.Screen
         name="Setting"
         options={{ headerTitle: strings.General }}
         component={SettingScreen}
@@ -77,17 +88,7 @@ const MainNavigator = () => {
 };
 
 const Navigator = () => {
-  const isNativeDarkMode = useColorScheme() === "dark";
-  const settings = useSelector((state: RootStoreType) => state.settings);
-  const [darkMode, setDarkMode] = useState(settings.darkMode);
-
-  useEffect(() => {
-    if (typeof settings.darkMode === "undefined") {
-      setDarkMode(isNativeDarkMode);
-    } else {
-      setDarkMode(settings.darkMode);
-    }
-  }, [isNativeDarkMode, settings.darkMode]);
+  const darkMode = useCheckDarkMode();
   return (
     <NavigationContainer theme={darkMode ? DarkTheme : Theme}>
       <MainNavigator />

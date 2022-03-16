@@ -8,6 +8,7 @@ export let strings = new LocalizedStrings({
     TitleLanguage: "Language",
     TitleProfile: "Profile",
     TitleReminder: "Reminder",
+    TitleAddReminder: "Add reminder",
 
     // Profile
     Settings: "Settings",
@@ -28,6 +29,34 @@ export let strings = new LocalizedStrings({
     // DarkMode
     LightMode: "Light mode",
     DefaultMode: "System default",
+
+    // Reminders
+    Add: "Add",
+    Cancel: "Cancel",
+    ReminderHint:
+      "Set up your reminders to receive a notification that fit with your time.",
+    ReminderHelp: "Reminders not working?",
+    RemindMe: "Remind me at",
+    Monday: "Monday",
+    Tuesday: "Tuesday",
+    Wednesday: "Wednesday",
+    Thursday: "Thursday",
+    Friday: "Friday",
+    Saturday: "Saturday",
+    Sunday: "Sunday",
+    Su: "S",
+    M: "M",
+    Tu: "T",
+    W: "W",
+    Th: "T",
+    F: "F",
+    S: "S",
+    ErrorSelectDay: "Please select at least 1 day",
+    PromptDeleteReminderTitle: "Delete this reminder?",
+    PromptDeleteReminderMessage:
+      "Are you sure you want to delete the selected reminder?",
+    Yes: "Yes",
+    No: "No",
   },
   ES: {
     SampleQuote: "Solamente soy yo",
@@ -36,6 +65,7 @@ export let strings = new LocalizedStrings({
     TitleLanguage: "Idioma",
     TitleProfile: "Perfil",
     TitleReminder: "Recordatorio",
+    TitleAddReminder: "Agregar recordatorio",
 
     // Profile
     Settings: "Ajustes",
@@ -56,6 +86,34 @@ export let strings = new LocalizedStrings({
     // DarkMode
     LightMode: "Modo claro",
     DefaultMode: "Por defecto del sistema",
+
+    // Reminders
+    Add: "Agregar",
+    Cancel: "Cancelar",
+    ReminderHint:
+      "Establece tus recordatorios para recibir notificaciones que se adecuen a tus tiempos.",
+    ReminderHelp: "Los recordatorios no funcionan?",
+    RemindMe: "Recuérdame a las",
+    Monday: "Lunes",
+    Tuesday: "Martes",
+    Wednesday: "Miércoles",
+    Thursday: "Jueves",
+    Friday: "Viernes",
+    Saturday: "Sábado",
+    Sunday: "Domingo",
+    Su: "D",
+    M: "L",
+    Tu: "M",
+    W: "X",
+    Th: "J",
+    F: "V",
+    S: "S",
+    ErrorSelectDay: "Seleccione al menos 1 día",
+    PromptDeleteReminderTitle: "¿Eliminar este recordatorio?",
+    PromptDeleteReminderMessage:
+      "¿Estás seguro de eliminar el recordatorio seleccionado?",
+    Yes: "Si",
+    No: "No",
   },
   PT: {
     SampleQuote: "So sou eu",
@@ -64,6 +122,7 @@ export let strings = new LocalizedStrings({
     TitleLanguage: "Idioma",
     TitleProfile: "Perfil",
     TitleReminder: "Lembretes",
+    TitleAddReminder: "Adicionar lembrete",
 
     // Profile
     Settings: "Configurações",
@@ -84,5 +143,33 @@ export let strings = new LocalizedStrings({
     // DarkMode
     LightMode: "Modo claro",
     DefaultMode: "Padrão do sistema",
+
+    // Reminders
+    Add: "Adicionar",
+    Cancel: "Cancelar",
+    ReminderHint:
+      "Defina seus lembretes para receber notificações adequadas aos seus horários.",
+    ReminderHelp: "Os lembretes não funcionam?",
+    RemindMe: "Lembre-me em",
+    Monday: "Segunda-feira",
+    Tuesday: "Terça-feira",
+    Wednesday: "Quarta-feira",
+    Thursday: "Quinta-feira",
+    Friday: "Sexta-feira",
+    Saturday: "Sábado",
+    Sunday: "Domingo",
+    Su: "D",
+    M: "S",
+    Tu: "T",
+    W: "Q",
+    Th: "Q",
+    F: "S",
+    S: "S",
+    ErrorSelectDay: "Selecione pelo menos 1 dia",
+    PromptDeleteReminderTitle: "Deletar este lembrete?",
+    PromptDeleteReminderMessage:
+      "Tem certeza de que deseja excluir o lembrete selecionado?",
+    Yes: "Sim",
+    No: "Não",
   },
 });
