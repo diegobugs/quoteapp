@@ -4,6 +4,7 @@ export let strings = new LocalizedStrings({
   EN: {
     SampleQuote: "Its just me",
     SetYourLanguage: "Choose your language",
+    SetYourInterval: "Choose the interval to get new quotes",
     // Navigation
     TitleLanguage: "Language",
     TitleProfile: "Profile",
@@ -25,6 +26,8 @@ export let strings = new LocalizedStrings({
     Other: "Other",
     PrivacyPolicy: "Privacy Policy",
     TermsAndConditions: "Terms and Conditions",
+    Quotes: "Quotes",
+    Interval: "Interval",
 
     // DarkMode
     LightMode: "Light mode",
@@ -61,6 +64,7 @@ export let strings = new LocalizedStrings({
   ES: {
     SampleQuote: "Solamente soy yo",
     SetYourLanguage: "Selecciona tu idioma",
+    SetYourInterval: "Selecciona el intervalo para recibir nuevas frases",
     // Navigation
     TitleLanguage: "Idioma",
     TitleProfile: "Perfil",
@@ -82,6 +86,8 @@ export let strings = new LocalizedStrings({
     Other: "Otros",
     PrivacyPolicy: "Política de privacidad",
     TermsAndConditions: "Términos y condiciones",
+    Quotes: "Quotes",
+    Interval: "Intervalo",
 
     // DarkMode
     LightMode: "Modo claro",
@@ -118,6 +124,7 @@ export let strings = new LocalizedStrings({
   PT: {
     SampleQuote: "So sou eu",
     SetYourLanguage: "Escolla seu idioma",
+    SetYourInterval: "Escolha o intervalo para obter novas cotações",
     // Navigation
     TitleLanguage: "Idioma",
     TitleProfile: "Perfil",
@@ -139,6 +146,8 @@ export let strings = new LocalizedStrings({
     Other: "Outras",
     PrivacyPolicy: "Política de Privacidade",
     TermsAndConditions: "Termos e Condições",
+    Quotes: "Quotes",
+    Interval: "Intervalo",
 
     // DarkMode
     LightMode: "Modo claro",

@@ -1,9 +1,11 @@
 import { ListItem, Text } from "@atoms";
 import { MainStackParamList } from "@navigator";
 import { NavigationProp, useTheme } from "@react-navigation/native";
+import { RootStoreType } from "@store";
 import { strings, ThemeType } from "@utils";
-import React from "react";
+import React, { useState } from "react";
 import { Pressable, ScrollView, View } from "react-native";
+import { useSelector } from "react-redux";
 import { styles } from "./styles";
 
 interface SettingScreenProps {
@@ -12,6 +14,9 @@ interface SettingScreenProps {
 
 const SettingScreen = ({ navigation }: SettingScreenProps) => {
   const theme = useTheme() as ThemeType;
+  const [settings] = useState(
+    useSelector((state: RootStoreType) => state.settings)
+  );
 
   const goToLanguage = () => {
     navigation.navigate("Language");
@@ -19,6 +24,10 @@ const SettingScreen = ({ navigation }: SettingScreenProps) => {
 
   const goToDarkMode = () => {
     navigation.navigate("DarkMode");
+  };
+
+  const goToInterval = () => {
+    navigation.navigate("Interval");
   };
 
   return (
@@ -36,6 +45,15 @@ const SettingScreen = ({ navigation }: SettingScreenProps) => {
           startIcon="darkMode"
           style={styles.item}
           primaryText={strings.DarkMode}
+        />
+      </Pressable>
+      <Text style={styles.titleText}>{strings.Quotes}</Text>
+      <Pressable onPress={goToInterval}>
+        <ListItem
+          startIcon="clock"
+          style={styles.item}
+          primaryText={strings.Interval}
+          actionText={`${settings.newQuoteInterval} min`}
         />
       </Pressable>
       <Text style={styles.titleText}>{strings.Other}</Text>

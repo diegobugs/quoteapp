@@ -11,6 +11,7 @@ import {
   REGISTER,
   REHYDRATE,
 } from "redux-persist";
+import { quotesReducer } from "../Quotes";
 import { remindersReducer } from "../Reminders";
 
 import { settingsReducer } from "../Settings";
@@ -27,8 +28,9 @@ const persistanceConfiguration = {
 export const rootReducer = combineReducers({
   // Place reducers in this section
   // I.e: settings: settingsReducer,
-  settings: settingsReducer,
+  quotes: quotesReducer,
   reminders: remindersReducer,
+  settings: settingsReducer,
 });
 
 const persistedReducer = persistReducer(persistanceConfiguration, rootReducer);
