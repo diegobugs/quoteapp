@@ -17,8 +17,21 @@ const quotesSlice = createSlice({
       lastQuoteTime: new Date().getTime(),
       quotes: [...state.quotes, action.payload],
     }),
-    markQuoteAsFavorite: (state, action: PayloadAction<QuoteType>) => ({
+    markQuoteAsFavorite: (state, action: PayloadAction<QuoteType["id"]>) => ({
       ...state,
+      quotes: [
+        ...state.quotes.map((quote) =>
+          quote.id === action.payload ? { ...quote, isFav: true } : quote
+        ),
+      ],
+    }),
+    unmarkQuoteAsFavorite: (state, action: PayloadAction<QuoteType["id"]>) => ({
+      ...state,
+      quotes: [
+        ...state.quotes.map((quote) =>
+          quote.id === action.payload ? { ...quote, isFav: false } : quote
+        ),
+      ],
     }),
   },
 });

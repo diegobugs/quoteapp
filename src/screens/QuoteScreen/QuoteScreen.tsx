@@ -59,6 +59,17 @@ const QuoteScreen = ({ navigation }: QuoteScreenProps) => {
     }
   };
 
+  const onFavPress = () => {
+    if (!currentQuote) {
+      return;
+    }
+    if (currentQuote?.isFav) {
+      dispatch(quotesActions.unmarkQuoteAsFavorite(currentQuote.id));
+    } else {
+      dispatch(quotesActions.markQuoteAsFavorite(currentQuote.id));
+    }
+  };
+
   const goToProfile = () => {
     navigation.navigate("Profile");
   };
@@ -74,9 +85,13 @@ const QuoteScreen = ({ navigation }: QuoteScreenProps) => {
           height={100}
         />
         <View style={styles.quoteButtons}>
-          <Button style={styles.button(theme)} disableShadow>
+          <Button
+            style={styles.button(theme)}
+            disableShadow
+            onPress={onFavPress}
+          >
             <Icon
-              icon="starOff"
+              icon={currentQuote?.isFav ? "starOn" : "starOff"}
               fill="primaryContrast"
               width={24}
               height={24}

@@ -16,6 +16,7 @@ const QuoteScreen = ({ navigation }: QuoteScreenProps) => {
   const goToSetting = () => navigation.navigate("Setting");
   const goToReminder = () => navigation.navigate("Reminder");
   const goToHistory = () => navigation.navigate("History");
+  const goToFavorites = () => navigation.navigate("Favorites");
 
   return (
     <ScrollView style={styles.container(theme)}>
@@ -42,11 +43,13 @@ const QuoteScreen = ({ navigation }: QuoteScreenProps) => {
           primaryText={strings.History}
         />
       </Pressable>
-      <ListItem
-        startIcon="starOn"
-        style={styles.item}
-        primaryText={strings.Favorite}
-      />
+      <Pressable onPress={goToFavorites}>
+        <ListItem
+          startIcon="starOn"
+          style={styles.item}
+          primaryText={strings.Favorite}
+        />
+      </Pressable>
     </ScrollView>
   );
 };
