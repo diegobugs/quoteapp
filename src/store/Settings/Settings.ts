@@ -6,6 +6,7 @@ const initialState: SettingsReducer = {
   appConfigured: false,
   darkMode: undefined,
   language: undefined,
+  newQuoteInterval: 10,
 };
 
 const settingsSlice = createSlice({

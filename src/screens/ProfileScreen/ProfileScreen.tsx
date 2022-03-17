@@ -14,8 +14,8 @@ const QuoteScreen = ({ navigation }: QuoteScreenProps) => {
   const theme = useTheme() as ThemeType;
 
   const goToSetting = () => navigation.navigate("Setting");
-
   const goToReminder = () => navigation.navigate("Reminder");
+  const goToHistory = () => navigation.navigate("History");
 
   return (
     <ScrollView style={styles.container(theme)}>
@@ -35,11 +35,13 @@ const QuoteScreen = ({ navigation }: QuoteScreenProps) => {
         />
       </Pressable>
       <Text style={styles.titleText}>{strings.YourQuotes}</Text>
-      <ListItem
-        startIcon="clock"
-        style={styles.item}
-        primaryText={strings.History}
-      />
+      <Pressable onPress={goToHistory}>
+        <ListItem
+          startIcon="clock"
+          style={styles.item}
+          primaryText={strings.History}
+        />
+      </Pressable>
       <ListItem
         startIcon="starOn"
         style={styles.item}

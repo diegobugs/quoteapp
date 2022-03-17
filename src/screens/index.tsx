@@ -1,5 +1,7 @@
 export { default as AddReminderScreen } from "./AddReminderScreen";
 export { default as DarkModeScreen } from "./DarkModeScreen";
+export { default as HistoryScreen } from "./HistoryScreen";
+export { default as IntervalScreen } from "./IntervalScreen";
 export { default as LanguageScreen } from "./LanguageScreen";
 export { default as ProfileScreen } from "./ProfileScreen";
 export { default as QuoteScreen } from "./QuoteScreen";

@@ -9,3 +9,8 @@ export type ReminderType = {
   time: number;
   days: Array<DayStringType>;
 };
+export type QuoteType = {
+  quote: string;
+  author: string;
+  isFav: boolean;
+};
