@@ -33,7 +33,10 @@ const LanguageScreen = ({ navigation }: LanguageScreenProps) => {
       navigation.reset({ index: 0, routes: [{ name: "Splash" }] });
     } else {
       dispatch(settingsActions.setSettings({ appConfigured: true }));
-      navigation.reset({ index: 0, routes: [{ name: "Reminder" }] });
+      navigation.reset({
+        index: 0,
+        routes: [{ name: "Quote" }, { name: "Reminder" }],
+      });
     }
   };
 

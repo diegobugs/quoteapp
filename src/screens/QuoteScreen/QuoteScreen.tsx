@@ -32,7 +32,7 @@ const QuoteScreen = ({ navigation }: QuoteScreenProps) => {
           .duration(moment().diff(quoteRedux.lastQuoteTime))
           .asMinutes();
 
-        if (nowAndLastQuote > settings.newQuoteInterval) {
+        if (nowAndLastQuote > settings.newQuoteInterval!) {
           fetchQuotes();
         }
       }
