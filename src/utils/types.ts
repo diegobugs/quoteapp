@@ -10,6 +10,7 @@ export type ReminderType = {
   days: Array<DayStringType>;
 };
 export type QuoteType = {
+  id: string | Uint16Array;
   quote: string;
   author: string;
   isFav: boolean;

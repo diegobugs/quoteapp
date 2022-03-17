@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {
   AddReminderScreen,
   DarkModeScreen,
+  FavoritesScreen,
   HistoryScreen,
   IntervalScreen,
   LanguageScreen,
@@ -26,6 +27,7 @@ export type MainStackParamList = {
       }
     | undefined;
   DarkMode: undefined;
+  Favorites: undefined;
   History: undefined;
   Interval: undefined;
   Language: undefined;
@@ -96,6 +98,11 @@ const MainNavigator = () => {
         name="Interval"
         options={{ headerTitle: strings.History }}
         component={IntervalScreen}
+      />
+      <Stack.Screen
+        name="Favorites"
+        options={{ headerTitle: strings.Favorite }}
+        component={FavoritesScreen}
       />
     </Stack.Navigator>
   );
