@@ -6,6 +6,7 @@ import {
   DarkModeScreen,
   FavoritesScreen,
   HistoryScreen,
+  HistoryViewerScreen,
   IntervalScreen,
   LanguageScreen,
   ProfileScreen,
@@ -16,8 +17,15 @@ import {
 } from "@screens";
 import { useSelector } from "react-redux";
 import { RootStoreType } from "@store";
-import { DarkTheme, ReminderType, strings, Theme } from "@utils";
-import { NavigationContainer } from "@react-navigation/native";
+import {
+  DarkTheme,
+  QuoteType,
+  ReminderType,
+  strings,
+  Theme,
+  ThemeType,
+} from "@utils";
+import { NavigationContainer, useTheme } from "@react-navigation/native";
 import { useCheckDarkMode } from "@hooks";
 
 export type MainStackParamList = {
@@ -29,6 +37,9 @@ export type MainStackParamList = {
   DarkMode: undefined;
   Favorites: undefined;
   History: undefined;
+  HistoryViewer: {
+    quote: QuoteType;
+  };
   Interval: undefined;
   Language: undefined;
   Profile: undefined;
@@ -41,6 +52,7 @@ export type MainStackParamList = {
 const Stack = createNativeStackNavigator<MainStackParamList>();
 
 const MainNavigator = () => {
+  const theme = useTheme() as ThemeType;
   const settings = useSelector((state: RootStoreType) => state.settings);
   strings.setLanguage(settings.language || "ES");
 
@@ -103,6 +115,13 @@ const MainNavigator = () => {
         name="Favorites"
         options={{ headerTitle: strings.Favorite }}
         component={FavoritesScreen}
+      />
+      <Stack.Screen
+        name="HistoryViewer"
+        options={{
+          headerShown: false,
+        }}
+        component={HistoryViewerScreen}
       />
     </Stack.Navigator>
   );

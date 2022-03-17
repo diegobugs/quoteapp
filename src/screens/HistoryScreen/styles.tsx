@@ -20,8 +20,6 @@ export const styles = StyleSheet.create<Styles>({
     marginBottom: 8,
   },
   titleText: {
-    fontWeight: "600",
-    fontSize: 16,
     marginBottom: 8,
   },
 });

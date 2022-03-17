@@ -1,4 +1,5 @@
 import { Button, Icon, Text } from "@atoms";
+import { QuoteHeader, QuoteView } from "@molecules";
 import { MainStackParamList } from "@navigator";
 import {
   NavigationProp,
@@ -6,7 +7,7 @@ import {
   useTheme,
 } from "@react-navigation/native";
 import { quotesActions, RootStoreType } from "@store";
-import { QuoteType, strings, ThemeType } from "@utils";
+import { QuoteType, ThemeType } from "@utils";
 import moment from "moment";
 import React, { useCallback, useEffect, useState } from "react";
 import { View } from "react-native";
@@ -59,69 +60,16 @@ const QuoteScreen = ({ navigation }: QuoteScreenProps) => {
     }
   };
 
-  const onFavPress = () => {
-    if (!currentQuote) {
-      return;
-    }
-    if (currentQuote?.isFav) {
-      dispatch(quotesActions.unmarkQuoteAsFavorite(currentQuote.id));
-    } else {
-      dispatch(quotesActions.markQuoteAsFavorite(currentQuote.id));
-    }
-  };
-
   const goToProfile = () => {
     navigation.navigate("Profile");
   };
 
   return (
     <SafeAreaView style={styles.container(theme)}>
-      <View style={styles.header}>
-        <Icon
-          icon="quoteLeft"
-          fill="primaryContrast"
-          style={{ opacity: 0.6 }}
-          width={100}
-          height={100}
-        />
-        <View style={styles.quoteButtons}>
-          <Button
-            style={styles.button(theme)}
-            disableShadow
-            onPress={onFavPress}
-          >
-            <Icon
-              icon={currentQuote?.isFav ? "starOn" : "starOff"}
-              fill="primaryContrast"
-              width={24}
-              height={24}
-            />
-          </Button>
-          <Button style={styles.button(theme)} disableShadow>
-            <Icon icon="share" fill="primaryContrast" width={24} height={24} />
-          </Button>
-        </View>
-      </View>
+      <QuoteHeader currentQuote={currentQuote} />
       <View style={styles.quoteContainer}>
         {currentQuote ? (
-          <>
-            <Text
-              allowFontScaling
-              align="center"
-              color="primaryContrast"
-              style={styles.quoteText}
-            >
-              {currentQuote?.quote}
-            </Text>
-            <Text
-              allowFontScaling
-              align="center"
-              color="primaryContrast"
-              style={styles.quoteAuthorText}
-            >
-              {currentQuote?.author}
-            </Text>
-          </>
+          <QuoteView currentQuote={currentQuote} />
         ) : (
           <Text
             allowFontScaling

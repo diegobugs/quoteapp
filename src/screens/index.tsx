@@ -2,6 +2,7 @@ export { default as AddReminderScreen } from "./AddReminderScreen";
 export { default as DarkModeScreen } from "./DarkModeScreen";
 export { default as FavoritesScreen } from "./FavoritesScreen";
 export { default as HistoryScreen } from "./HistoryScreen";
+export { default as HistoryViewerScreen } from "./HistoryViewerScreen";
 export { default as IntervalScreen } from "./IntervalScreen";
 export { default as LanguageScreen } from "./LanguageScreen";
 export { default as ProfileScreen } from "./ProfileScreen";

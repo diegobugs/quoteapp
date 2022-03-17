@@ -3,7 +3,7 @@ import { MainStackParamList } from "@navigator";
 import { useTheme } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStoreType } from "@store";
-import { strings, ThemeType } from "@utils";
+import { QuoteType, strings, ThemeType } from "@utils";
 import React, { useState } from "react";
 import { Pressable, ScrollView, View } from "react-native";
 import { useSelector } from "react-redux";
@@ -19,17 +19,19 @@ const HistoryScreen = ({ navigation }: HistoryScreenProps) => {
     useSelector((state: RootStoreType) => state.quotes.quotes)
   );
 
+  const onQuotePress = (quote: QuoteType) => {
+    navigation.navigate("HistoryViewer", { quote: quote });
+  };
+
   return (
     <ScrollView style={styles.container(theme)}>
-      <Text style={styles.titleText}>{strings.History}</Text>
+      {quotes?.length == 0 && (
+        <Text style={styles.titleText}>{strings.NoHistory}</Text>
+      )}
       {quotes.map((quote, index) => (
-        <ListItem
-          key={index}
-          startIcon="starOff"
-          style={styles.item}
-          primaryText={quote.quote}
-          disableActionIcon
-        />
+        <Pressable key={index} onPress={() => onQuotePress(quote)}>
+          <ListItem style={styles.item} primaryText={quote.quote} />
+        </Pressable>
       ))}
     </ScrollView>
   );
