@@ -35,9 +35,9 @@ const FavoritesScreen = ({ navigation }: FavoritesScreenProps) => {
 
   return (
     <ScrollView style={styles.container(theme)}>
-      <Text style={styles.titleText}>
-        {quotes?.length > 0 ? strings.Favorite : strings.NoFavorites}
-      </Text>
+      {quotes?.length == 0 && (
+        <Text style={styles.titleText}>{strings.NoFavorites}</Text>
+      )}
       {quotes.length > 0
         ? quotes.map((quote, index) => (
             <Pressable key={index} onPress={() => onFavPress(quote)}>

@@ -19,6 +19,7 @@ export let strings = new LocalizedStrings({
     History: "History",
     Favorite: "Favorites",
     NoFavorites: "No favorites to show here",
+    NoHistory: "No quotes to show here",
 
     // Settings
     Customize: "Customize",
@@ -80,6 +81,7 @@ export let strings = new LocalizedStrings({
     History: "Historial",
     Favorite: "Favoritos",
     NoFavorites: "No hay favoritos que mostrar aquí",
+    NoHistory: "No hay frases que mostrar aquí",
 
     // Settings
     Customize: "Personalizar",
@@ -141,6 +143,7 @@ export let strings = new LocalizedStrings({
     History: "História",
     Favorite: "Favoritos",
     NoFavorites: "Não há favoritos para mostrar aqui",
+    NoHistory: "Não há frase para mostrar aqui",
 
     // Settings
     Customize: "Personalizar",
