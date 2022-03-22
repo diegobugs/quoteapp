@@ -22,6 +22,14 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+        <string>fb</string>        
+        <string>whatsapp</string>
+		<string>instagram</string>
+		<string>twitter</string>		
+		<string>tg</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -38,6 +46,10 @@
 		</dict>
 		
 	</dict>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>The app uses information about your photo library to be able to save your quote images</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>The app uses information about your photo library to be able to save your quote images</string>	
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>UILaunchStoryboardName</key>

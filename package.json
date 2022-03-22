@@ -10,11 +10,14 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "@react-native-community/cameraroll": "^4.1.2",
+    "@react-native-community/clipboard": "^1.5.1",
     "@react-native-community/datetimepicker": "^6.0.1",
     "@react-navigation/native": "6.0.6",
     "@react-navigation/native-stack": "6.2.5",
     "@reduxjs/toolkit": "1.7.1",
     "babel-plugin-module-resolver": "4.1.0",
+    "fbjs": "^3.0.4",
     "moment": "^2.29.1",
     "react": "17.0.2",
     "react-native": "0.67.2",
@@ -22,8 +25,10 @@
     "react-native-mmkv": "2.1.2",
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "3.10.1",
+    "react-native-share": "^7.3.7",
     "react-native-svg": "^12.3.0",
     "react-native-uuid": "^2.0.1",
+    "react-native-view-shot": "^3.1.2",
     "react-redux": "7.2.6",
     "redux": "4.1.2",
     "redux-persist": "6.0.0"
