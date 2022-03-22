@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { quotesActions } from "@store";
 import { captureRef } from "react-native-view-shot";
 import { useShare } from "@hooks";
+import { scale } from "react-native-size-matters";
 
 const QuoteHeader = ({
   onBackPress,
@@ -51,8 +52,8 @@ const QuoteHeader = ({
             icon="arrowRight"
             rotate={180}
             fill="primaryContrast"
-            width={24}
-            height={24}
+            width={scale(24)}
+            height={scale(24)}
           />
         </Pressable>
       ) : (
@@ -60,8 +61,8 @@ const QuoteHeader = ({
           icon="quoteLeft"
           fill="primaryContrast"
           style={{ opacity: 0.6 }}
-          width={100}
-          height={100}
+          width={scale(100)}
+          height={scale(100)}
         />
       )}
       <View style={styles.quoteButtons}>
@@ -69,8 +70,8 @@ const QuoteHeader = ({
           <Icon
             icon={currentQuote?.isFav ? "starOn" : "starOff"}
             fill="primaryContrast"
-            width={24}
-            height={24}
+            width={scale(24)}
+            height={scale(24)}
           />
         </Button>
         <Button
@@ -78,7 +79,12 @@ const QuoteHeader = ({
           disableShadow
           onPress={onSharePress}
         >
-          <Icon icon="share" fill="primaryContrast" width={24} height={24} />
+          <Icon
+            icon="share"
+            fill="primaryContrast"
+            width={scale(24)}
+            height={scale(24)}
+          />
         </Button>
       </View>
     </View>

@@ -1,5 +1,6 @@
 import { ThemeType } from "@utils";
 import { StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { scale } from "react-native-size-matters";
 
 interface Styles {
   appsContainer: ViewStyle;
@@ -12,25 +13,25 @@ interface Styles {
 }
 
 export const styles = StyleSheet.create<Styles>({
-  appsContainer: { paddingHorizontal: 24 },
+  appsContainer: { paddingHorizontal: scale(16) },
   container: (theme) => ({
-    borderTopLeftRadius: 24,
-    borderTopRightRadius: 24,
+    borderTopLeftRadius: scale(24),
+    borderTopRightRadius: scale(24),
     backgroundColor: theme.colors.background,
   }),
-  content: { marginVertical: 24 },
+  content: { marginVertical: scale(16) },
   button: {
     backgroundColor: "transparent",
     flexDirection: "column",
-    marginEnd: 10,
-    width: 60,
+    marginEnd: scale(10),
+    width: scale(50),
   },
   buttonText: {
-    fontSize: 12,
+    fontSize: scale(10),
   },
   optionsContainer: {
     flexDirection: "row",
-    paddingHorizontal: 24,
-    marginTop: 16,
+    paddingHorizontal: scale(16),
+    marginTop: scale(8),
   },
 });

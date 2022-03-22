@@ -6,7 +6,6 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { ThemeType } from "@utils";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "./styles";
-import { View } from "react-native";
 import ViewShot from "react-native-view-shot";
 
 interface HistoryViewerScreenProps {

@@ -12,8 +12,8 @@ import { remindersActions } from "@store";
 import uuid from "react-native-uuid";
 import { useCheckDarkMode } from "@hooks";
 import moment from "moment";
-import { DateTimePickerEvent } from "@react-native-community/datetimepicker";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+import { scale } from "react-native-size-matters";
 
 interface AddReminderScreenProps {
   navigation: NativeStackNavigationProp<MainStackParamList, "AddReminder">;
@@ -100,9 +100,9 @@ const AddReminderScreen = ({ navigation, route }: AddReminderScreenProps) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{ justifyContent: "center", flex: 1, alignItems: "center" }}>
+      <View style={styles.timeContainer}>
         <Pressable onPress={handleChangeTime}>
-          <Text fontWeight="normal" style={{ fontSize: 80 }}>
+          <Text fontWeight="lighter" style={styles.timeText}>
             {moment(time).format("HH:mm")}
           </Text>
         </Pressable>

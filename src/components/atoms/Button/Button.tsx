@@ -8,6 +8,8 @@ import { styles } from "./styles";
 import { ButtonProps } from "./types";
 import { ThemeType } from "@utils";
 
+import { scale } from "react-native-size-matters";
+
 const iconColors: {
   [key: string]: keyof Exclude<ThemeType["colors"], "opacity">;
 } = {
@@ -71,8 +73,8 @@ const Button = ({
 
   const iconDefaultProps = (pressed: boolean) => {
     return {
-      width: 24,
-      height: 24,
+      width: scale(24),
+      height: scale(24),
       fill: pressed ? iconColors[`${variant}_pressed`] : iconColors[variant],
     };
   };

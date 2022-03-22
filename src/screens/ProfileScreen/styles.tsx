@@ -1,5 +1,6 @@
 import { ThemeType } from "@utils";
 import { StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { scale } from "react-native-size-matters";
 
 interface Styles {
   container: (theme: ThemeType) => ViewStyle;
@@ -12,16 +13,16 @@ export const styles = StyleSheet.create<Styles>({
   container: (theme) => ({
     backgroundColor: theme.colors.background,
     flex: 1,
-    marginBottom: 10,
-    paddingHorizontal: 24,
-    paddingVertical: 24,
+    marginBottom: scale(10),
+    paddingHorizontal: scale(24),
+    paddingVertical: scale(24),
   }),
   item: {
-    marginBottom: 8,
+    marginBottom: scale(6),
   },
   titleText: {
     fontWeight: "600",
-    fontSize: 16,
-    marginBottom: 8,
+    fontSize: scale(12),
+    marginBottom: scale(6),
   },
 });

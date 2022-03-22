@@ -1,10 +1,10 @@
-import { TextProps as RNTextProps } from "react-native";
+import { TextProps as RNTextProps, TextStyle } from "react-native";
 
 import { ThemeType } from "@utils";
 
 export type AlignType = "center" | "left" | "right";
 
-export type FontFamily = "AvenirNext" | "Oswald" | "Roboto";
+export type FontFamily = "AvenirNext" | "Oswald" | "Roboto" | "Montserrat";
 
 export type FontWeight =
   | "normal"
@@ -22,7 +22,9 @@ export type FontWeight =
 
 export type TextProps = RNTextProps & {
   align?: AlignType;
+  allowAutoSize?: boolean;
   color?: Exclude<keyof ThemeType["colors"], "opacity">;
   fontFamily?: FontFamily;
   fontWeight?: FontWeight;
+  style?: TextStyle;
 };

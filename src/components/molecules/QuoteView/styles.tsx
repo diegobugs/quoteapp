@@ -1,4 +1,5 @@
-import { StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { StyleSheet, TextStyle } from "react-native";
+import { scale } from "react-native-size-matters";
 
 interface Styles {
   quoteAuthorText: TextStyle;
@@ -8,11 +9,11 @@ interface Styles {
 
 export const styles = StyleSheet.create<Styles>({
   quoteAuthorText: {
-    marginTop: 10,
-    fontSize: 16,
+    marginTop: scale(10),
+    fontSize: scale(16),
   },
   quoteText: {
-    fontSize: 36,
+    fontSize: scale(36),
     fontStyle: "italic",
     fontWeight: "bold",
   },
