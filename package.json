@@ -23,6 +23,7 @@
     "react-native": "0.67.2",
     "react-native-localization": "^2.3.1",
     "react-native-mmkv": "2.1.2",
+    "react-native-modal-datetime-picker": "^13.1.0",
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "3.10.1",
     "react-native-share": "^7.3.7",

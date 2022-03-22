@@ -7,17 +7,17 @@ import { Alert, Platform, Pressable, ToastAndroid, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "./styles";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import DateTimePicker, {
-  DateTimePickerEvent,
-} from "@react-native-community/datetimepicker";
 import { useDispatch } from "react-redux";
 import { remindersActions } from "@store";
 import uuid from "react-native-uuid";
 import { useCheckDarkMode } from "@hooks";
+import moment from "moment";
+import { DateTimePickerEvent } from "@react-native-community/datetimepicker";
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 interface AddReminderScreenProps {
-  navigation: NativeStackNavigationProp<MainStackParamList, "Quote">;
-  route: RouteProp<MainStackParamList>;
+  navigation: NativeStackNavigationProp<MainStackParamList, "AddReminder">;
+  route: RouteProp<MainStackParamList, "AddReminder">;
 }
 
 const DAYS: Array<DayStringType> = ["Su", "M", "Tu", "W", "Th", "F", "S"];
@@ -28,6 +28,7 @@ const AddReminderScreen = ({ navigation, route }: AddReminderScreenProps) => {
   const [selectedDays, setSelectedDays] = useState<Array<DayStringType>>(
     paramReminder?.days ?? []
   );
+  const [isDatePickerVisible, setIsDatePickerVisible] = useState(false);
   const dispatch = useDispatch();
   const isDarkMode = useCheckDarkMode();
 
@@ -41,12 +42,10 @@ const AddReminderScreen = ({ navigation, route }: AddReminderScreenProps) => {
     paramReminder?.time ? new Date(paramReminder.time) : new Date()
   );
 
-  const onChangeDate = (
-    _: DateTimePickerEvent,
-    selectedTime: Date | undefined
-  ) => {
+  const onChangeDate = (selectedTime: Date | undefined) => {
     if (selectedTime) {
       setTime(selectedTime);
+      setIsDatePickerVisible(false);
     }
   };
 
@@ -91,16 +90,31 @@ const AddReminderScreen = ({ navigation, route }: AddReminderScreenProps) => {
     navigation.goBack();
   };
 
+  const handleChangeTime = () => {
+    setIsDatePickerVisible(true);
+  };
+
+  const hideDatePicker = () => {
+    setIsDatePickerVisible(false);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
-      <View>
-        <DateTimePicker
+      <View style={{ justifyContent: "center", flex: 1, alignItems: "center" }}>
+        <Pressable onPress={handleChangeTime}>
+          <Text fontWeight="normal" style={{ fontSize: 80 }}>
+            {moment(time).format("HH:mm")}
+          </Text>
+        </Pressable>
+        <DateTimePickerModal
+          isVisible={isDatePickerVisible}
           mode="time"
           display="spinner"
-          value={time}
-          onChange={onChangeDate}
+          onConfirm={onChangeDate}
+          onCancel={hideDatePicker}
           locale="en_EN"
           is24Hour={true}
+          date={time}
           themeVariant={isDarkMode ? "dark" : "light"}
         />
       </View>
