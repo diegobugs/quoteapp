@@ -2,15 +2,11 @@ import { View } from "react-native";
 import React from "react";
 import { styles } from "./styles";
 import { Text } from "@atoms";
-import { useTheme } from "@react-navigation/native";
-import { ThemeType } from "@utils";
 import { QuoteViewProps } from "./types";
 
 const QuoteView = ({ currentQuote }: QuoteViewProps) => {
-  const theme = useTheme() as ThemeType;
-
   return (
-    <View style={styles.quoteContainer}>
+    <View>
       <Text
         allowFontScaling
         align="center"

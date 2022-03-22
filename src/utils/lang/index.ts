@@ -62,6 +62,11 @@ export let strings = new LocalizedStrings({
       "Are you sure you want to delete the selected reminder?",
     Yes: "Yes",
     No: "No",
+
+    // Share
+    Copy: "Copy",
+    Save: "Save",
+    More: "More",
   },
   ES: {
     SampleQuote: "Solamente soy yo",
@@ -124,6 +129,11 @@ export let strings = new LocalizedStrings({
       "¿Estás seguro de eliminar el recordatorio seleccionado?",
     Yes: "Si",
     No: "No",
+
+    // Share
+    Copy: "Copiar",
+    Save: "Guardar",
+    More: "Más",
   },
   PT: {
     SampleQuote: "So sou eu",
@@ -186,5 +196,10 @@ export let strings = new LocalizedStrings({
       "Tem certeza de que deseja excluir o lembrete selecionado?",
     Yes: "Sim",
     No: "Não",
+
+    // Share
+    Copy: "Copiar",
+    Save: "Salvar",
+    More: "Mais",
   },
 });

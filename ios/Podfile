@@ -12,6 +12,8 @@ target 'Quoteapp' do
     :hermes_enabled => false
   )
 
+  pod 'react-native-cameraroll', :path => '../node_modules/@react-native-community/cameraroll'
+
   target 'QuoteappTests' do
     inherit! :complete
     # Pods for testing

@@ -9,9 +9,10 @@ import {
 import { quotesActions, RootStoreType } from "@store";
 import { QuoteType, ThemeType } from "@utils";
 import moment from "moment";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import ViewShot from "react-native-view-shot";
 import { useDispatch, useSelector } from "react-redux";
 import { styles } from "./styles";
 
@@ -25,6 +26,8 @@ const QuoteScreen = ({ navigation }: QuoteScreenProps) => {
   const settings = useSelector((state: RootStoreType) => state.settings);
   const dispatch = useDispatch();
   const [currentQuote, setCurrentQuote] = useState<QuoteType>();
+  const [snapRef, setSnapRef] = useState<ViewShot>();
+  const ref = useRef<ViewShot>(null);
 
   useFocusEffect(
     useCallback(() => {
@@ -39,6 +42,12 @@ const QuoteScreen = ({ navigation }: QuoteScreenProps) => {
       }
     }, [quoteRedux])
   );
+
+  useEffect(() => {
+    if (ref.current) {
+      setSnapRef(ref.current);
+    }
+  }, [ref]);
 
   useEffect(() => {
     if (quoteRedux) {
@@ -66,8 +75,8 @@ const QuoteScreen = ({ navigation }: QuoteScreenProps) => {
 
   return (
     <SafeAreaView style={styles.container(theme)}>
-      <QuoteHeader currentQuote={currentQuote} />
-      <View style={styles.quoteContainer}>
+      <QuoteHeader currentQuote={currentQuote} snapRef={snapRef} />
+      <ViewShot ref={ref} style={styles.quoteContainer(theme)}>
         {currentQuote ? (
           <QuoteView currentQuote={currentQuote} />
         ) : (
@@ -80,7 +89,7 @@ const QuoteScreen = ({ navigation }: QuoteScreenProps) => {
             ...
           </Text>
         )}
-      </View>
+      </ViewShot>
       <View style={styles.bottomContainer}>
         <Button
           onPress={goToProfile}

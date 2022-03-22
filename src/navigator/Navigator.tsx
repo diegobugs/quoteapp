@@ -26,7 +26,9 @@ import {
   ThemeType,
 } from "@utils";
 import { NavigationContainer, useTheme } from "@react-navigation/native";
-import { useCheckDarkMode } from "@hooks";
+import { ShareProvider, useCheckDarkMode } from "@hooks";
+import { StatusBar } from "react-native";
+import { ShareMenu } from "@molecules";
 
 export type MainStackParamList = {
   AddReminder:
@@ -131,7 +133,14 @@ const Navigator = () => {
   const darkMode = useCheckDarkMode();
   return (
     <NavigationContainer theme={darkMode ? DarkTheme : Theme}>
-      <MainNavigator />
+      <ShareProvider>
+        <StatusBar
+          hidden={false}
+          barStyle={darkMode ? "light-content" : "dark-content"}
+        />
+        <MainNavigator />
+        <ShareMenu />
+      </ShareProvider>
     </NavigationContainer>
   );
 };

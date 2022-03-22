@@ -1,4 +1,4 @@
-import { View, Text, Pressable } from "react-native";
+import { View, Pressable } from "react-native";
 import React from "react";
 import { styles } from "./styles";
 import { Button, Icon } from "@atoms";
@@ -7,10 +7,17 @@ import { ThemeType } from "@utils";
 import { QuoteHeaderProps } from "./types";
 import { useDispatch } from "react-redux";
 import { quotesActions } from "@store";
+import { captureRef } from "react-native-view-shot";
+import { useShare } from "@hooks";
 
-const QuoteHeader = ({ onBackPress, currentQuote }: QuoteHeaderProps) => {
+const QuoteHeader = ({
+  onBackPress,
+  currentQuote,
+  snapRef,
+}: QuoteHeaderProps) => {
   const theme = useTheme() as ThemeType;
   const dispatch = useDispatch();
+  const { showShare, hideShare } = useShare();
 
   const onFavPress = () => {
     if (!currentQuote) {
@@ -20,6 +27,19 @@ const QuoteHeader = ({ onBackPress, currentQuote }: QuoteHeaderProps) => {
       dispatch(quotesActions.unmarkQuoteAsFavorite(currentQuote.id));
     } else {
       dispatch(quotesActions.markQuoteAsFavorite(currentQuote.id));
+    }
+  };
+
+  const onSharePress = async () => {
+    if (snapRef) {
+      try {
+        const base64 = await captureRef(snapRef, {
+          result: "tmpfile",
+        });
+        showShare({ file: base64, text: currentQuote?.quote });
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 
@@ -53,7 +73,11 @@ const QuoteHeader = ({ onBackPress, currentQuote }: QuoteHeaderProps) => {
             height={24}
           />
         </Button>
-        <Button style={styles.button(theme)} disableShadow>
+        <Button
+          style={styles.button(theme)}
+          disableShadow
+          onPress={onSharePress}
+        >
           <Icon icon="share" fill="primaryContrast" width={24} height={24} />
         </Button>
       </View>
