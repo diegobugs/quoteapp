@@ -1,18 +1,18 @@
-import { useTheme } from '@react-navigation/native';
-import React from 'react';
-import { Text as RNText } from 'react-native';
+import { useTheme } from "@react-navigation/native";
+import React from "react";
+import { Text as RNText } from "react-native";
 
-import { ThemeType } from '@utils';
+import { ThemeType } from "@utils";
 
-import styles from './styles';
-import { TextProps } from './types';
+import styles from "./styles";
+import { TextProps } from "./types";
 
 const Text: React.FunctionComponent<TextProps> = ({
-  align = 'left',
+  align = "left",
   children,
-  color = 'text',
-  fontFamily = 'AvenirNext',
-  fontWeight = 'normal',
+  color = "text",
+  fontFamily = "Roboto",
+  fontWeight = "normal",
   style,
 
   ...props
@@ -27,7 +27,8 @@ const Text: React.FunctionComponent<TextProps> = ({
         styles[`fontWeight_${fontWeight}`](fontFamily),
         style,
       ]}
-      {...props}>
+      {...props}
+    >
       {children}
     </RNText>
   );

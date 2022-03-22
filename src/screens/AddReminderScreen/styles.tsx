@@ -19,6 +19,7 @@ export const styles = StyleSheet.create<Styles>({
   container: {
     flex: 1,
     paddingHorizontal: 24,
+    marginVertical: 16,
   },
   day: {
     width: 32,
