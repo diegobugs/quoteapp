@@ -9,6 +9,7 @@ import { Pressable, ScrollView } from "react-native";
 import { Edge, SafeAreaView } from "react-native-safe-area-context";
 import { useDispatch, useSelector } from "react-redux";
 import { styles } from "./styles";
+import { scale } from "react-native-size-matters";
 
 interface LanguageScreenProps {
   navigation: NavigationProp<MainStackParamList, "Language">;
@@ -46,7 +47,12 @@ const LanguageScreen = ({ navigation }: LanguageScreenProps) => {
 
   return (
     <SafeAreaView style={styles.container} edges={validEdges}>
-      <Icon icon="language" fill="primary" width={100} height={100} />
+      <Icon
+        icon="language"
+        fill="primary"
+        width={scale(100)}
+        height={scale(100)}
+      />
       <Text style={styles.title}>{strings.SetYourLanguage}</Text>
       <ScrollView>
         <Pressable onPress={() => selectLanguage("ES")}>

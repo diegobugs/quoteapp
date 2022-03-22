@@ -1,5 +1,6 @@
 import { ThemeType } from "@utils";
 import { StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { scale } from "react-native-size-matters";
 
 interface Styles {
   container: ViewStyle;
@@ -11,26 +12,27 @@ interface Styles {
   reminderCard: (theme: ThemeType) => ViewStyle;
   reminderHint: TextStyle;
   row: ViewStyle;
-  title: TextStyle;
+  timeContainer: ViewStyle;
+  timeText: TextStyle;
   [key: string]: any;
 }
 
 export const styles = StyleSheet.create<Styles>({
   container: {
     flex: 1,
-    paddingHorizontal: 24,
-    marginVertical: 16,
+    paddingHorizontal: scale(24),
+    marginVertical: scale(16),
   },
   day: {
-    width: 32,
-    height: 32,
+    width: scale(32),
+    height: scale(32),
     justifyContent: "center",
     alignItems: "center",
     opacity: 0.6,
   },
   daySelected: (theme) => ({
-    borderWidth: 1,
-    borderRadius: 32,
+    borderWidth: scale(1),
+    borderRadius: scale(32),
     borderColor: theme.colors.success,
     opacity: 1,
   }),
@@ -38,24 +40,25 @@ export const styles = StyleSheet.create<Styles>({
     flexDirection: "row",
     justifyContent: "space-evenly",
     backgroundColor: theme.colors.primary,
-    paddingVertical: 16,
-    borderRadius: 12,
+    paddingVertical: scale(16),
+    borderRadius: scale(12),
   }),
   flex: { flex: 1 },
   reminderHint: {
-    marginTop: 16,
+    marginTop: scale(16),
   },
   reminderBlock: (theme) => ({
     flexDirection: "row",
   }),
   reminderCard: (theme) => ({
     backgroundColor: theme.colors.primary,
-    borderRadius: 12,
+    borderRadius: scale(12),
     flexDirection: "row",
     justifyContent: "space-around",
-    paddingVertical: 16,
-    marginBottom: 8,
+    paddingVertical: scale(16),
+    marginBottom: scale(8),
   }),
   row: { flexDirection: "row" },
-  title: { fontSize: 16, fontWeight: "600", marginBottom: 8 },
+  timeContainer: { justifyContent: "center", flex: 1, alignItems: "center" },
+  timeText: { fontSize: scale(80) },
 });

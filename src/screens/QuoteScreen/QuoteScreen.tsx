@@ -15,6 +15,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import ViewShot from "react-native-view-shot";
 import { useDispatch, useSelector } from "react-redux";
 import { styles } from "./styles";
+import { scale } from "react-native-size-matters";
 
 interface QuoteScreenProps {
   navigation: NavigationProp<MainStackParamList, "Quote">;
@@ -96,7 +97,12 @@ const QuoteScreen = ({ navigation }: QuoteScreenProps) => {
           style={styles.button(theme)}
           disableShadow
         >
-          <Icon icon="user" fill="primaryContrast" width={24} height={24} />
+          <Icon
+            icon="user"
+            fill="primaryContrast"
+            width={scale(24)}
+            height={scale(24)}
+          />
         </Button>
       </View>
     </SafeAreaView>

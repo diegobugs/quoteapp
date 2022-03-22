@@ -14,6 +14,7 @@ import { ShareContext, useShare } from "@hooks";
 import { styles } from "./styles";
 import Clipboard from "@react-native-community/clipboard";
 import CameraRoll from "@react-native-community/cameraroll";
+import { scale } from "react-native-size-matters";
 
 type ApplicationList =
   | "whatsapp"
@@ -184,7 +185,7 @@ const ShareMenu = () => {
               style={styles.button}
               onPress={handleWhatsappPress}
             >
-              <Icon icon="whatsapp" width={32} height={32} />
+              <Icon icon="whatsapp" width={scale(28)} height={scale(28)} />
               <Text numberOfLines={1} style={styles.buttonText}>
                 Whatsapp
               </Text>
@@ -196,7 +197,7 @@ const ShareMenu = () => {
               style={styles.button}
               onPress={handleFacebookPress}
             >
-              <Icon icon="facebook" width={32} height={32} />
+              <Icon icon="facebook" width={scale(28)} height={scale(28)} />
               <Text numberOfLines={1} style={styles.buttonText}>
                 Facebook
               </Text>
@@ -208,7 +209,7 @@ const ShareMenu = () => {
               style={styles.button}
               onPress={handleInstagramPress}
             >
-              <Icon icon="instagram" width={32} height={32} />
+              <Icon icon="instagram" width={scale(28)} height={scale(28)} />
               <Text numberOfLines={1} style={styles.buttonText}>
                 Instagram
               </Text>
@@ -220,7 +221,7 @@ const ShareMenu = () => {
               style={styles.button}
               onPress={handleTwitterPress}
             >
-              <Icon icon="twitter" width={32} height={32} />
+              <Icon icon="twitter" width={scale(28)} height={scale(28)} />
               <Text numberOfLines={1} style={styles.buttonText}>
                 Twitter
               </Text>
@@ -232,14 +233,14 @@ const ShareMenu = () => {
               style={styles.button}
               onPress={handleTelegramPress}
             >
-              <Icon icon="telegram" width={32} height={32} />
+              <Icon icon="telegram" width={scale(28)} height={scale(28)} />
               <Text numberOfLines={1} style={styles.buttonText}>
                 Telegram
               </Text>
             </Button>
           ) : null}
           <Button disableShadow style={styles.button} onPress={handleMorePress}>
-            <Icon icon="shareNodes" width={32} height={32} />
+            <Icon icon="shareNodes" width={scale(28)} height={scale(28)} />
             <Text numberOfLines={1} style={styles.buttonText}>
               {strings.More}
             </Text>
@@ -247,13 +248,13 @@ const ShareMenu = () => {
         </ScrollView>
         <View style={styles.optionsContainer}>
           <Button disableShadow style={styles.button} onPress={handleCopyPress}>
-            <Icon icon="copy" width={32} height={32} />
+            <Icon icon="copy" width={scale(28)} height={scale(28)} />
             <Text numberOfLines={1} style={styles.buttonText}>
               {strings.Copy}
             </Text>
           </Button>
           <Button disableShadow style={styles.button} onPress={handleSavePress}>
-            <Icon icon="download" width={32} height={32} />
+            <Icon icon="download" width={scale(28)} height={scale(28)} />
             <Text numberOfLines={1} style={styles.buttonText}>
               {strings.Save}
             </Text>

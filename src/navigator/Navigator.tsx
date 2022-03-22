@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import {
@@ -27,8 +27,10 @@ import {
 } from "@utils";
 import { NavigationContainer, useTheme } from "@react-navigation/native";
 import { ShareProvider, useCheckDarkMode } from "@hooks";
-import { StatusBar } from "react-native";
+import { Platform, StatusBar } from "react-native";
 import { ShareMenu } from "@molecules";
+
+import { scale } from "react-native-size-matters";
 
 export type MainStackParamList = {
   AddReminder:
@@ -58,8 +60,17 @@ const MainNavigator = () => {
   const settings = useSelector((state: RootStoreType) => state.settings);
   strings.setLanguage(settings.language || "ES");
 
+  const screenOptions = useMemo(() => {
+    return {
+      headerTitleStyle: {
+        fontFamily: "Montserrat-SemiBold",
+        fontSize: scale(16),
+      },
+    };
+  }, []);
+
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={screenOptions}>
       <Stack.Screen
         name="Splash"
         options={{ headerShown: false }}
@@ -131,12 +142,19 @@ const MainNavigator = () => {
 
 const Navigator = () => {
   const darkMode = useCheckDarkMode();
+
+  const barStyle = useMemo(() => {
+    return darkMode ? "light-content" : "dark-content";
+  }, [darkMode]);
+
   return (
     <NavigationContainer theme={darkMode ? DarkTheme : Theme}>
       <ShareProvider>
         <StatusBar
           hidden={false}
-          barStyle={darkMode ? "light-content" : "dark-content"}
+          barStyle={barStyle}
+          backgroundColor={"transparent"}
+          translucent
         />
         <MainNavigator />
         <ShareMenu />

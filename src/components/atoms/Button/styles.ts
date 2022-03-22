@@ -1,6 +1,8 @@
 import { ThemeType } from "@utils";
 import { StyleSheet } from "react-native";
 
+import { scale } from "react-native-size-matters";
+
 import { Styles } from "./types";
 
 export const styles: Styles = StyleSheet.create<Styles>({
@@ -10,12 +12,12 @@ export const styles: Styles = StyleSheet.create<Styles>({
   pressable_common: {
     alignContent: "center",
     alignItems: "center",
-    borderRadius: 12,
+    borderRadius: scale(12),
     display: "flex",
     flexDirection: "row",
-    height: 50,
-    minHeight: 48,
-    minWidth: 48,
+    height: scale(50),
+    minHeight: scale(48),
+    minWidth: scale(48),
     justifyContent: "center",
   },
 
@@ -49,7 +51,7 @@ export const styles: Styles = StyleSheet.create<Styles>({
   startIcon: {
     paddingRight: 0,
     position: "absolute",
-    left: 36,
+    left: scale(36),
   },
 
   text_contained: (theme: ThemeType) => ({

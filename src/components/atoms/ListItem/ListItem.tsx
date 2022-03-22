@@ -1,14 +1,6 @@
 import { IconsList } from "../../../assets/icons";
 import React, { useCallback, useMemo } from "react";
-import {
-  StyleSheet,
-  View,
-  ViewProps,
-  ViewStyle,
-  TextStyle,
-  Pressable,
-  StyleProp,
-} from "react-native";
+import { View, ViewProps, ViewStyle, Pressable, StyleProp } from "react-native";
 import { Platform } from "react-native";
 
 import { useTheme } from "@react-navigation/native";
@@ -16,67 +8,8 @@ import { useTheme } from "@react-navigation/native";
 import Icon from "../Icon";
 import Text, { TextProps } from "../Text";
 import { ThemeType } from "@utils";
-
-interface Styles {
-  action: ViewStyle;
-  actionIcon: ViewStyle;
-  container: ViewStyle;
-  divider: (theme: ThemeType) => ViewStyle;
-  leftContainer: (applyWidth: boolean) => ViewStyle;
-  primaryText: TextStyle;
-  shadowContainer: ViewStyle;
-  startIcon: ViewStyle;
-  textContainer: ViewStyle;
-  textContainerPadding: ViewStyle;
-  [key: string]: any;
-}
-
-const styles = StyleSheet.create<Styles>({
-  action: {
-    alignItems: "center",
-    flexDirection: "row",
-    height: "100%",
-    padding: 5,
-  },
-  actionIcon: {
-    width: 24,
-    height: 24,
-  },
-  avatar: {
-    alignItems: "center",
-    marginRight: 5,
-  },
-  container: {
-    alignItems: "center",
-    flexDirection: "row",
-    minHeight: 40,
-    width: "100%",
-  },
-  divider: (theme: ThemeType) => ({
-    borderWidth: Platform.OS === "android" ? 0.5 : 1,
-    borderColor: theme.colors.border + theme.colors.opacity[10],
-    width: "100%",
-  }),
-  leftContainer: (applyWidth) => ({
-    minWidth: applyWidth ? 40 : 0,
-  }),
-  primaryText: {
-    fontWeight: "normal",
-  },
-  shadowContainer: {
-    alignItems: "center",
-    flexDirection: "row",
-  },
-  startIcon: {
-    marginRight: 8,
-  },
-  textContainer: {
-    flex: 1,
-  },
-  textContainerPadding: {
-    paddingHorizontal: 5,
-  },
-});
+import { scale } from "react-native-size-matters";
+import { styles } from "./styles";
 
 export type ListItemProps = ViewProps & {
   actionIcon?: IconsList;
@@ -119,8 +52,8 @@ const ListItem = ({
 
   const iconDefaultProps = useMemo(() => {
     return {
-      width: 24,
-      height: 24,
+      width: scale(18),
+      height: scale(18),
     };
   }, []);
 
@@ -167,13 +100,15 @@ const ListItem = ({
         </View>
         <Action>
           <>
-            {actionText && actionText !== "" && <Text>{actionText}</Text>}
+            {actionText && actionText !== "" && (
+              <Text style={styles.actionText}>{actionText}</Text>
+            )}
             {!disableActionIcon && (
               <Icon
                 icon={actionIcon}
                 style={[styles.actionIcon, actionStyle]}
-                width={24}
-                height={24}
+                width={scale(18)}
+                height={scale(18)}
                 fill={"text"}
               />
             )}

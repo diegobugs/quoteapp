@@ -1,5 +1,6 @@
 import { ThemeType } from "@utils";
 import { StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { scale } from "react-native-size-matters";
 
 interface Styles {
   container: ViewStyle;
@@ -14,13 +15,14 @@ interface Styles {
 export const styles = StyleSheet.create<Styles>({
   container: {
     flex: 1,
-    paddingHorizontal: 24,
+    paddingHorizontal: scale(24),
   },
   day: {
-    marginHorizontal: 1,
+    marginHorizontal: scale(1),
   },
   reminderHint: {
-    marginTop: 16,
+    marginTop: scale(16),
+    fontSize: scale(12),
   },
   reminderBlock: (theme) => ({
     flexDirection: "row",
@@ -30,8 +32,8 @@ export const styles = StyleSheet.create<Styles>({
     borderRadius: 12,
     flexDirection: "row",
     justifyContent: "space-around",
-    paddingVertical: 16,
-    marginBottom: 8,
+    paddingVertical: scale(16),
+    marginBottom: scale(8),
   }),
-  title: { fontSize: 16, fontWeight: "600", marginBottom: 8 },
+  title: { fontSize: scale(14), fontWeight: "600", marginBottom: 8 },
 });
