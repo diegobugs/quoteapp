@@ -21,6 +21,7 @@ export type ListItemProps = ViewProps & {
   divider?: boolean;
   DividerProps?: Partial<ViewProps>;
   onActionPress?: () => void;
+  onStartIconPress?: () => void;
   primaryText?: string | React.ReactNode;
   PrimaryTextProps?: Partial<TextProps>;
   shadowStyle?: StyleProp<ViewStyle>;
@@ -35,6 +36,7 @@ const ListItem = ({
   divider = false,
   DividerProps,
   onActionPress,
+  onStartIconPress,
   primaryText,
   PrimaryTextProps,
   shadowStyle,
@@ -70,6 +72,12 @@ const ListItem = ({
     },
     [onActionPress]
   );
+
+  const handleOnStartPress = () => {
+    if (typeof onStartIconPress === "function") {
+      onStartIconPress();
+    }
+  };
   return (
     <>
       <View
@@ -77,11 +85,13 @@ const ListItem = ({
         {...props}
       >
         {startIcon && (
-          <Icon
-            icon={startIcon}
-            {...iconDefaultProps}
-            style={styles.startIcon}
-          />
+          <Pressable onPress={handleOnStartPress}>
+            <Icon
+              icon={startIcon}
+              {...iconDefaultProps}
+              style={styles.startIcon}
+            />
+          </Pressable>
         )}
         <View style={[styles.textContainer]}>
           {typeof primaryText === "string" ? (
