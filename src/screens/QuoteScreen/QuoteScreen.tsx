@@ -16,6 +16,7 @@ import ViewShot from "react-native-view-shot";
 import { useDispatch, useSelector } from "react-redux";
 import { styles } from "./styles";
 import { scale } from "react-native-size-matters";
+import uuid from "react-native-uuid";
 
 interface QuoteScreenProps {
   navigation: NavigationProp<MainStackParamList, "Quote">;
@@ -64,7 +65,7 @@ const QuoteScreen = ({ navigation }: QuoteScreenProps) => {
   const fetchQuotes = async () => {
     try {
       const quote = await require("./exampleQuote.json");
-      dispatch(quotesActions.addQuotes(quote));
+      dispatch(quotesActions.addQuotes({ ...quote, id: uuid.v1() }));
     } catch (error) {
       console.error(error);
     }
