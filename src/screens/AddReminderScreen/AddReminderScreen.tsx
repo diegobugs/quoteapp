@@ -13,7 +13,6 @@ import uuid from "react-native-uuid";
 import { useCheckDarkMode } from "@hooks";
 import moment from "moment";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-import { scale } from "react-native-size-matters";
 
 interface AddReminderScreenProps {
   navigation: NativeStackNavigationProp<MainStackParamList, "AddReminder">;
