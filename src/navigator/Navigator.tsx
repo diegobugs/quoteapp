@@ -77,17 +77,17 @@ const MainNavigator = () => {
         component={SplashScreen}
       />
       <Stack.Screen
+        name="Quote"
+        component={QuoteScreen}
+        options={{ headerShown: false, animation: "fade" }}
+      />
+      <Stack.Screen
         name="Language"
         options={{
           headerShown: settings.appConfigured ? true : false,
           headerTitle: strings.TitleLanguage,
         }}
         component={LanguageScreen}
-      />
-      <Stack.Screen
-        name="Quote"
-        component={QuoteScreen}
-        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="Profile"
