@@ -19,7 +19,9 @@ const FavoritesScreen = ({ navigation }: FavoritesScreenProps) => {
   const quotesStore = useSelector(
     (state: RootStoreType) => state.quotes.quotes
   );
-  const [quotes, setQuotes] = useState<Array<QuoteType>>([]);
+  const [quotes, setQuotes] = useState<Array<QuoteType>>(
+    quotesStore.filter((quote) => quote.isFav)
+  );
 
   useEffect(() => {
     setQuotes(quotesStore.filter((quote) => quote.isFav));
@@ -33,6 +35,10 @@ const FavoritesScreen = ({ navigation }: FavoritesScreenProps) => {
     }
   };
 
+  const onQuotePress = (quote: QuoteType) => {
+    navigation.navigate("HistoryViewer", { quote: quote });
+  };
+
   return (
     <ScrollView style={styles.container(theme)}>
       {quotes?.length == 0 && (
@@ -40,14 +46,14 @@ const FavoritesScreen = ({ navigation }: FavoritesScreenProps) => {
       )}
       {quotes.length > 0
         ? quotes.map((quote, index) => (
-            <Pressable key={index} onPress={() => onFavPress(quote)}>
-              <ListItem
-                startIcon={quote.isFav ? "starOn" : "starOff"}
-                style={styles.item}
-                primaryText={quote.quote}
-                disableActionIcon
-              />
-            </Pressable>
+            <ListItem
+              key={index}
+              startIcon={quote.isFav ? "starOn" : "starOff"}
+              onStartIconPress={() => onFavPress(quote)}
+              style={styles.item}
+              primaryText={quote.quote}
+              onActionPress={() => onQuotePress(quote)}
+            />
           ))
         : null}
     </ScrollView>

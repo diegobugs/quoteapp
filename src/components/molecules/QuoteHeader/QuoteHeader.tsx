@@ -1,5 +1,5 @@
 import { View, Pressable } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { styles } from "./styles";
 import { Button, Icon } from "@atoms";
 import { useTheme } from "@react-navigation/native";
@@ -17,17 +17,24 @@ const QuoteHeader = ({
   snapRef,
 }: QuoteHeaderProps) => {
   const theme = useTheme() as ThemeType;
+  const [quote, setQuote] = useState(currentQuote!);
   const dispatch = useDispatch();
-  const { showShare, hideShare } = useShare();
+  const { showShare } = useShare();
+
+  useEffect(() => {
+    if (currentQuote) {
+      setQuote(currentQuote);
+    }
+  }, [currentQuote]);
 
   const onFavPress = () => {
-    if (!currentQuote) {
-      return;
-    }
-    if (currentQuote?.isFav) {
-      dispatch(quotesActions.unmarkQuoteAsFavorite(currentQuote.id));
-    } else {
-      dispatch(quotesActions.markQuoteAsFavorite(currentQuote.id));
+    if (quote) {
+      setQuote((prev) => ({ ...prev, isFav: !prev?.isFav }));
+      if (quote?.isFav) {
+        dispatch(quotesActions.unmarkQuoteAsFavorite(quote.id));
+      } else {
+        dispatch(quotesActions.markQuoteAsFavorite(quote.id));
+      }
     }
   };
 
@@ -37,7 +44,7 @@ const QuoteHeader = ({
         const base64 = await captureRef(snapRef, {
           result: "tmpfile",
         });
-        showShare({ file: base64, text: currentQuote?.quote });
+        showShare({ file: base64, text: quote?.quote });
       } catch (error) {
         console.error(error);
       }
@@ -68,7 +75,7 @@ const QuoteHeader = ({
       <View style={styles.quoteButtons}>
         <Button style={styles.button(theme)} disableShadow onPress={onFavPress}>
           <Icon
-            icon={currentQuote?.isFav ? "starOn" : "starOff"}
+            icon={quote?.isFav ? "starOn" : "starOff"}
             fill="primaryContrast"
             width={scale(24)}
             height={scale(24)}

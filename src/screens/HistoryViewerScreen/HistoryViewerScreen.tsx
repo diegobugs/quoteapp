@@ -18,7 +18,7 @@ const HistoryViewerScreen = ({
   route,
 }: HistoryViewerScreenProps) => {
   const theme = useTheme() as ThemeType;
-  const quote = route.params.quote;
+  const [quote] = useState(route.params.quote);
   const [snapRef, setSnapRef] = useState<ViewShot>();
   const ref = useRef<ViewShot>(null);
 
