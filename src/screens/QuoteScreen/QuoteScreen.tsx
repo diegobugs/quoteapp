@@ -18,6 +18,12 @@ import { styles } from "./styles";
 import { scale } from "react-native-size-matters";
 import uuid from "react-native-uuid";
 
+type QuoteResponse = {
+  data: {
+    quote: QuoteType;
+  };
+};
+
 interface QuoteScreenProps {
   navigation: NavigationProp<MainStackParamList, "Quote">;
 }
@@ -64,8 +70,35 @@ const QuoteScreen = ({ navigation }: QuoteScreenProps) => {
 
   const fetchQuotes = async () => {
     try {
-      const quote = await require("./exampleQuote.json");
-      dispatch(quotesActions.addQuotes({ ...quote, id: uuid.v1() }));
+      const response = await fetch("https://quoteapp-server.herokuapp.com/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          query: `
+            query {
+              quote(lang: ${settings.language?.toLowerCase() || "es"}) {
+                id
+                quote
+                author
+              }
+            }
+          `,
+        }),
+      });
+
+      if (response.ok) {
+        const {
+          data: { quote },
+        }: QuoteResponse = await response.json();
+
+        dispatch(
+          quotesActions.addQuotes({
+            quote: quote.quote,
+            author: quote.author,
+            id: quote.id,
+          })
+        );
+      }
     } catch (error) {
       console.error(error);
     }
