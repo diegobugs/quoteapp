@@ -67,6 +67,9 @@ export let strings = new LocalizedStrings({
     Copy: "Copy",
     Save: "Save",
     More: "More",
+
+    // Notifications
+    NewQuote: "There is a new quote for you",
   },
   ES: {
     SampleQuote: "Solamente soy yo",
@@ -134,6 +137,9 @@ export let strings = new LocalizedStrings({
     Copy: "Copiar",
     Save: "Guardar",
     More: "Más",
+
+    // Notifications
+    NewQuote: "Hay una nueva notificación para ti",
   },
   PT: {
     SampleQuote: "So sou eu",
@@ -201,5 +207,8 @@ export let strings = new LocalizedStrings({
     Copy: "Copiar",
     Save: "Salvar",
     More: "Mais",
+
+    // Notifications
+    NewQuote: "Há uma nova frase para você",
   },
 });

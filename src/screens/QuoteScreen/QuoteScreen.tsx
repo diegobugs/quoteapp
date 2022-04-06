@@ -7,7 +7,7 @@ import {
   useTheme,
 } from "@react-navigation/native";
 import { quotesActions, RootStoreType } from "@store";
-import { QuoteType, ThemeType } from "@utils";
+import { QuoteResponse, QuoteType, ThemeType } from "@utils";
 import moment from "moment";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { View } from "react-native";
@@ -16,13 +16,6 @@ import ViewShot from "react-native-view-shot";
 import { useDispatch, useSelector } from "react-redux";
 import { styles } from "./styles";
 import { scale } from "react-native-size-matters";
-import uuid from "react-native-uuid";
-
-type QuoteResponse = {
-  data: {
-    quote: QuoteType;
-  };
-};
 
 interface QuoteScreenProps {
   navigation: NavigationProp<MainStackParamList, "Quote">;

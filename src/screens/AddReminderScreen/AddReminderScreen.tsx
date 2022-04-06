@@ -9,10 +9,10 @@ import { styles } from "./styles";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useDispatch } from "react-redux";
 import { remindersActions } from "@store";
-import uuid from "react-native-uuid";
 import { useCheckDarkMode } from "@hooks";
 import moment from "moment";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+import PushNotification from "react-native-push-notification";
 
 interface AddReminderScreenProps {
   navigation: NativeStackNavigationProp<MainStackParamList, "AddReminder">;
@@ -20,6 +20,8 @@ interface AddReminderScreenProps {
 }
 
 const DAYS: Array<DayStringType> = ["Su", "M", "Tu", "W", "Th", "F", "S"];
+const RMAX = 10000;
+const RMIN = 100;
 
 const AddReminderScreen = ({ navigation, route }: AddReminderScreenProps) => {
   const theme = useTheme() as ThemeType;
@@ -72,6 +74,8 @@ const AddReminderScreen = ({ navigation, route }: AddReminderScreenProps) => {
     }
 
     if (paramReminder) {
+      removeNotification(paramReminder.id, paramReminder.days);
+      createNotification(paramReminder.id, time, selectedDays);
       const reminder: ReminderType = {
         id: paramReminder.id,
         time: time.getTime(),
@@ -79,14 +83,49 @@ const AddReminderScreen = ({ navigation, route }: AddReminderScreenProps) => {
       };
       dispatch(remindersActions.updateReminder(reminder));
     } else {
+      const idGenerated = (Math.random() * (RMAX - RMIN) + RMIN)
+        .toFixed(0)
+        .toString();
+      createNotification(idGenerated, time, selectedDays);
       const reminder: ReminderType = {
-        id: uuid.v1(),
+        id: idGenerated,
         time: time.getTime(),
         days: selectedDays,
       };
       dispatch(remindersActions.setReminders(reminder));
     }
     navigation.goBack();
+  };
+
+  const createNotification = (id: string, time: Date, dates: Array<any>) => {
+    dates.forEach((day) => {
+      PushNotification.localNotificationSchedule({
+        id: `${id}${DAYS.indexOf(day)}`,
+        channelId: "quoteapp-notifications",
+        title: "Quoteapp",
+        message: strings.NewQuote,
+        date: calculateDateByDay(time, day),
+        allowWhileIdle: true,
+        repeatType: "week",
+      });
+    });
+  };
+
+  const removeNotification = (id: string, dates: Array<any>) => {
+    try {
+      const unselectedDays = dates.filter((day) => !selectedDays.includes(day));
+      const ids = unselectedDays.map((day) => `${id}${DAYS.indexOf(day)}`);
+      if (ids.length > 0) {
+        PushNotification.removeDeliveredNotifications(ids);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const calculateDateByDay = (time: Date, day: any) => {
+    const daysFromNow = DAYS.findIndex((d) => d === day) - time.getDay();
+    return moment(time).add(daysFromNow, "day").toDate();
   };
 
   const handleChangeTime = () => {

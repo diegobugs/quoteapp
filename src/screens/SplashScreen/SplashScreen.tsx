@@ -1,14 +1,15 @@
 import { MainStackParamList } from "@navigator";
 import { NavigationProp, useTheme } from "@react-navigation/native";
-import { RootStoreType } from "@store";
-import { ThemeType } from "@utils";
+import { quotesActions, RootStoreType } from "@store";
+import { QuoteResponse, ThemeType } from "@utils";
 import React, { useEffect, useMemo, useRef } from "react";
-import { Animated, Image, ViewStyle } from "react-native";
+import { Animated, Image, Platform, ViewStyle } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { strings } from "@utils";
 import { styles } from "./styles";
 import { Text } from "@atoms";
+import PushNotification from "react-native-push-notification";
 
 interface SplashScreenProps {
   navigation: NavigationProp<MainStackParamList, "Splash">;
@@ -18,6 +19,7 @@ const SplashScreen = ({ navigation }: SplashScreenProps) => {
   const theme = useTheme() as ThemeType;
   const settings = useSelector((state: RootStoreType) => state.settings);
   const opacity = useRef(new Animated.Value(0));
+  const dispatch = useDispatch();
   strings.setLanguage(settings.language || "ES");
 
   useEffect(() => {
@@ -53,9 +55,70 @@ const SplashScreen = ({ navigation }: SplashScreenProps) => {
     Animated.timing(opacity.current, {
       toValue: 1,
       useNativeDriver: true,
-      duration: 500,
+      duration: 250,
     }).start();
+
+    createNotificationChannel();
   }, []);
+
+  const createNotificationChannel = () => {
+    try {
+      PushNotification.createChannel(
+        {
+          channelId: "quoteapp-notifications",
+          channelName: "Quoteapp",
+        },
+        () => {}
+      );
+
+      PushNotification.getDeliveredNotifications((notifications) => {
+        if (notifications.length > 0) {
+          fetchQuotes();
+          PushNotification.removeDeliveredNotifications(
+            notifications.map((notification) => notification.identifier)
+          );
+        }
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const fetchQuotes = async () => {
+    try {
+      const response = await fetch("https://quoteapp-server.herokuapp.com/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          query: `
+            query {
+              quote(lang: ${settings.language?.toLowerCase() || "es"}) {
+                id
+                quote
+                author
+              }
+            }
+          `,
+        }),
+      });
+
+      if (response.ok) {
+        const {
+          data: { quote },
+        }: QuoteResponse = await response.json();
+
+        dispatch(
+          quotesActions.addQuotes({
+            quote: quote.quote,
+            author: quote.author,
+            id: quote.id,
+          })
+        );
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <SafeAreaView style={styles.container(theme)}>
