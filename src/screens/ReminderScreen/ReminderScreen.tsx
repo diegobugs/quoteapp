@@ -10,6 +10,7 @@ import { Edge, SafeAreaView } from "react-native-safe-area-context";
 import { useDispatch, useSelector } from "react-redux";
 import { styles } from "./styles";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import PushNotification from "react-native-push-notification";
 
 interface ReminderScreenProps {
   navigation: NativeStackNavigationProp<MainStackParamList, "Quote">;
@@ -41,6 +42,7 @@ const ReminderScreen = ({ navigation }: ReminderScreenProps) => {
     headerHeight > 0 ? edges.filter((e) => e !== "top") : edges;
   const reminderStore = useSelector((state: RootStoreType) => state.reminders);
   const [reminders, setReminders] = useState<Array<ReminderType>>([]);
+  const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
   const isActiveDay = useCallback(
@@ -49,6 +51,22 @@ const ReminderScreen = ({ navigation }: ReminderScreenProps) => {
     },
     []
   );
+
+  useEffect(() => {
+    setLoaded(true);
+  }, []);
+
+  useEffect(() => {
+    if (loaded) {
+      if (reminders.length === 0) {
+        PushNotification.getScheduledLocalNotifications((notifications) => {
+          if (notifications.length > 0) {
+            PushNotification.cancelAllLocalNotifications();
+          }
+        });
+      }
+    }
+  }, [reminders, loaded]);
 
   useEffect(() => {
     setReminders(reminderStore);

@@ -6,6 +6,7 @@ export type {
   LanguageType,
   QuoteType,
   ReminderType,
+  QuoteResponse,
 } from "./types";
 export type { Opacity, ThemeType } from "./Theme";
 export { Theme, DarkTheme, strings };
