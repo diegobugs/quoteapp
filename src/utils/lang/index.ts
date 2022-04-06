@@ -139,7 +139,7 @@ export let strings = new LocalizedStrings({
     More: "Más",
 
     // Notifications
-    NewQuote: "Hay una nueva notificación para ti",
+    NewQuote: "Hay una nueva frase para ti",
   },
   PT: {
     SampleQuote: "So sou eu",
