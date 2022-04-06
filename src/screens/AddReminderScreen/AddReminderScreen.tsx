@@ -1,7 +1,7 @@
 import { Button, Text } from "@atoms";
 import { MainStackParamList } from "@navigator";
 import { RouteProp, useTheme } from "@react-navigation/native";
-import { DayStringType, ReminderType, strings, ThemeType } from "@utils";
+import { DAYS, DayStringType, ReminderType, strings, ThemeType } from "@utils";
 import React, { useCallback, useState } from "react";
 import { Alert, Platform, Pressable, ToastAndroid, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -19,7 +19,6 @@ interface AddReminderScreenProps {
   route: RouteProp<MainStackParamList, "AddReminder">;
 }
 
-const DAYS: Array<DayStringType> = ["Su", "M", "Tu", "W", "Th", "F", "S"];
 const RMAX = 10000;
 const RMIN = 100;
 
@@ -125,7 +124,11 @@ const AddReminderScreen = ({ navigation, route }: AddReminderScreenProps) => {
 
   const calculateDateByDay = (time: Date, day: any) => {
     const daysFromNow = DAYS.findIndex((d) => d === day) - time.getDay();
-    return moment(time).add(daysFromNow, "day").toDate();
+    let calculatedDate = moment(time).add(daysFromNow, "day");
+    if (daysFromNow <= 0) {
+      calculatedDate = moment(calculatedDate).add(1, "week");
+    }
+    return calculatedDate.toDate();
   };
 
   const handleChangeTime = () => {

@@ -7,7 +7,13 @@ import {
   useTheme,
 } from "@react-navigation/native";
 import { quotesActions, RootStoreType } from "@store";
-import { QuoteResponse, QuoteType, ThemeType } from "@utils";
+import {
+  DAYS,
+  DayStringType,
+  QuoteResponse,
+  QuoteType,
+  ThemeType,
+} from "@utils";
 import moment from "moment";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { View } from "react-native";
@@ -25,6 +31,7 @@ const QuoteScreen = ({ navigation }: QuoteScreenProps) => {
   const theme = useTheme() as ThemeType;
   const quoteRedux = useSelector((state: RootStoreType) => state.quotes);
   const settings = useSelector((state: RootStoreType) => state.settings);
+  const reminders = useSelector((state: RootStoreType) => state.reminders);
   const dispatch = useDispatch();
   const [currentQuote, setCurrentQuote] = useState<QuoteType>();
   const [snapRef, setSnapRef] = useState<ViewShot>();
@@ -39,10 +46,47 @@ const QuoteScreen = ({ navigation }: QuoteScreenProps) => {
 
         if (nowAndLastQuote > settings.newQuoteInterval!) {
           fetchQuotes();
+        } else {
+          if (reminders.length > 0) {
+            const lastQuoteDateTime = moment(quoteRedux.lastQuoteTime);
+
+            const isReminderBetween = reminders.some((reminder) => {
+              const lastTimeReminder = moment(
+                findClosestDay(0, reminder.days, reminder.time)
+              );
+
+              // if the lastReminder time is past the last time quotes updated
+              // then we have one reminder that means to fetch new quotes
+              if (lastTimeReminder > lastQuoteDateTime) {
+                return true;
+              }
+
+              // if condition does not met return false
+              return false;
+            });
+
+            if (isReminderBetween) {
+              fetchQuotes();
+            }
+          }
         }
       }
     }, [quoteRedux])
   );
+
+  const findClosestDay: any = (
+    offset: number,
+    days: DayStringType[],
+    time: any
+  ) => {
+    const day = moment().add(offset, "day").weekday();
+
+    if (days.includes(DAYS[day])) {
+      return moment(time).add(offset, "d");
+    }
+
+    return findClosestDay(offset - 1, days, time);
+  };
 
   useEffect(() => {
     if (ref.current) {

@@ -1,5 +1,6 @@
 import { Theme, DarkTheme } from "./Theme";
 import { strings } from "./lang";
+import { DAYS } from "./constants";
 
 export type {
   DayStringType,
@@ -9,4 +10,4 @@ export type {
   QuoteResponse,
 } from "./types";
 export type { Opacity, ThemeType } from "./Theme";
-export { Theme, DarkTheme, strings };
+export { Theme, DarkTheme, strings, DAYS };
