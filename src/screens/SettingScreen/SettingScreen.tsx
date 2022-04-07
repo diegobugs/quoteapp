@@ -3,7 +3,7 @@ import { MainStackParamList } from "@navigator";
 import { NavigationProp, useTheme } from "@react-navigation/native";
 import { RootStoreType } from "@store";
 import { strings, ThemeType } from "@utils";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Pressable, ScrollView, View } from "react-native";
 import { useSelector } from "react-redux";
 import { styles } from "./styles";
@@ -14,9 +14,8 @@ interface SettingScreenProps {
 
 const SettingScreen = ({ navigation }: SettingScreenProps) => {
   const theme = useTheme() as ThemeType;
-  const [settings] = useState(
-    useSelector((state: RootStoreType) => state.settings)
-  );
+  const settingsRedux = useSelector((state: RootStoreType) => state.settings);
+  const [settings, setSettings] = useState(settingsRedux);
 
   const goToLanguage = () => {
     navigation.navigate("Language");
@@ -29,6 +28,12 @@ const SettingScreen = ({ navigation }: SettingScreenProps) => {
   const goToInterval = () => {
     navigation.navigate("Interval");
   };
+
+  useEffect(() => {
+    if (settingsRedux) {
+      setSettings(settingsRedux);
+    }
+  }, [settingsRedux]);
 
   return (
     <ScrollView style={styles.container(theme)}>

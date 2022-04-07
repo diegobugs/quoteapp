@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { styles } from "./styles";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import PushNotification from "react-native-push-notification";
+import moment from "moment";
 
 interface ReminderScreenProps {
   navigation: NativeStackNavigationProp<MainStackParamList, "Quote">;
@@ -81,9 +82,7 @@ const ReminderScreen = ({ navigation }: ReminderScreenProps) => {
   };
 
   const formatTime = (timestamp: number) => {
-    const hour = new Date(timestamp).getHours();
-    const minute = new Date(timestamp).getMinutes();
-    return `${hour}:${minute}`;
+    return moment(timestamp).format("HH:mm");
   };
 
   const deleteReminder = (reminder: ReminderType) => {
