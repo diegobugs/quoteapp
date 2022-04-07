@@ -13,9 +13,9 @@ export const styles = StyleSheet.create<Styles>({
   container: (theme) => ({
     backgroundColor: theme.colors.background,
     flex: 1,
-    marginBottom: scale(10),
+    marginBottom: scale(36),
     paddingHorizontal: scale(24),
-    paddingVertical: scale(24),
+    paddingTop: scale(12),
   }),
   item: {
     marginBottom: scale(8),

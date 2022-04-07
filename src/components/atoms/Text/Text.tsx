@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Text as RNText,
   TextStyle,
@@ -19,11 +19,26 @@ const Text: React.FunctionComponent<TextProps> = ({
   children,
   color = "text",
   style,
+  numberOfLines,
+  containerLayout,
   ...props
 }) => {
   const theme = useTheme() as ThemeType;
   const defaultFontSize = useRef<number>(style?.fontSize || 60);
   const [scaleSize, setScaleSize] = useState(defaultFontSize.current);
+  let autoSizedChildren = useRef<React.ReactNode>();
+
+  useEffect(() => {
+    if (
+      allowAutoSize &&
+      (typeof numberOfLines === "undefined" || numberOfLines > 1) &&
+      typeof containerLayout === "undefined"
+    ) {
+      console.warn(
+        "Multiline text autosize work only when containerLayout is defined"
+      );
+    }
+  }, []);
 
   // Funcion que se ejecuta cuando se muestra en pantalla el texto
   // En esta funcion se evalue autosize
@@ -34,8 +49,23 @@ const Text: React.FunctionComponent<TextProps> = ({
   ) => {
     if (allowAutoSize) {
       const { lines } = event.nativeEvent;
-      if (lines.length > 1 && scaleSize > 5) {
-        setScaleSize((prev: number) => prev - 5);
+
+      if (numberOfLines === 1) {
+        if (lines.length > 1 && scaleSize > 5) {
+          setScaleSize((prev: number) => prev - 5);
+        }
+      } else {
+        if (children !== autoSizedChildren.current && containerLayout) {
+          const { height, width } = containerLayout;
+          const textLength = children?.toString().length;
+          if (textLength) {
+            const fontSize = Math.sqrt((width * height) / textLength);
+            if (fontSize < defaultFontSize.current) {
+              setScaleSize(fontSize);
+              autoSizedChildren.current = children;
+            }
+          }
+        }
       }
     }
   };
@@ -43,6 +73,7 @@ const Text: React.FunctionComponent<TextProps> = ({
   let _style = style;
   if (Platform.OS === "android") {
     if (style && style.fontWeight) {
+      // @ts-ignore
       const { fontWeight, fontStyle, ...oldStyle } = style;
       const isItalic = fontStyle === "italic";
       _style = [
@@ -77,7 +108,7 @@ const Text: React.FunctionComponent<TextProps> = ({
   ];
 
   return (
-    <RNText style={textStyle} {...props} onTextLayout={handleTextLayout}>
+    <RNText style={textStyle} onTextLayout={handleTextLayout} {...props}>
       {children}
     </RNText>
   );

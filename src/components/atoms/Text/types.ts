@@ -1,4 +1,8 @@
-import { TextProps as RNTextProps, TextStyle } from "react-native";
+import {
+  LayoutRectangle,
+  TextProps as RNTextProps,
+  TextStyle,
+} from "react-native";
 
 import { ThemeType } from "@utils";
 
@@ -24,6 +28,7 @@ export type TextProps = RNTextProps & {
   align?: AlignType;
   allowAutoSize?: boolean;
   color?: Exclude<keyof ThemeType["colors"], "opacity">;
+  containerLayout?: LayoutRectangle;
   fontFamily?: FontFamily;
   fontWeight?: FontWeight;
   style?: TextStyle;

@@ -26,5 +26,6 @@ export const styles = StyleSheet.create<Styles>({
     backgroundColor: theme.colors.primary,
     flex: 1,
     justifyContent: "center",
+    alignItems: "center",
   }),
 });
